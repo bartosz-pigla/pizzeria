@@ -1,0 +1,111 @@
+<!--row-->
+<div class="row">
+    <!--left-->
+    <div class="col-md-2" id="leftCol">
+        <div ng-if="selectedIdx == -1" ng-include="'templates/filterPanel.html'"></div>
+    </div>
+    <!--/left-->
+    <!--right-->
+    <div class="col-md-9" ng-if="selectedIdx == -1">
+        <div class="alert alert-success fade in" ng-if="edited == true">
+            <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+            powodzeniem!</strong>
+            Pomyslnie zmodyfikowano produkt do menu
+        </div>
+        <div class="row">
+            <h2>Wybierz produkt do edycji</h2>
+
+            <div class="col-sm-6 col-md-3" ng-repeat="item in collection">
+                <div ng-include="'templates/pizzaItem.html'" ng-if="item.type == 'pizza'"></div>
+                <div ng-include="'templates/sauceItem.html'" ng-if="item.type == 'sos'"></div>
+                <div ng-include="'templates/drinkItem.html'" ng-if="item.type == 'napoj'"></div>
+            </div>
+
+            <div class="container-fluid" ng-include="'templates/paginationPanel.html'"></div>
+        </div>
+        <!--/right-->
+    </div>
+
+    <div class="col-md-9" ng-if="selectedIdx != -1">
+        <button type="button" class="btn btn-default" ng-click="controller.openItem(-1)">Powrot</button>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <form name="pizzaInfo" class="item active" ng-if="controller.selectedItem.type == 'pizza'">
+                    <div ng-include="'templates/productMenuManagement/pizzaInfo.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+                <form name="sauceInfo" ng-if="controller.selectedItem.type == 'sos'" class="item active">
+                    <div ng-include="'templates/productMenuManagement/sauceInfo.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+                <form name="drinkInfo" ng-if="controller.selectedItem.type == 'napoj'" class="item active">
+                    <div ng-include="'templates/productMenuManagement/drinkInfo.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+
+                <form name="pizzaCost" class="item" ng-if="controller.selectedItem.type == 'pizza'">
+                    <div ng-include="'templates/productMenuManagement/pizzaCost.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+                <form name="sauceCost" ng-if="controller.selectedItem.type == 'sos'" class="item">
+                    <div ng-include="'templates/productMenuManagement/sauceCost.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+                <form name="drinkCost" ng-if="controller.selectedItem.type == 'napoj'" class="item">
+                    <div ng-include="'templates/productMenuManagement/drinkCost.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+
+                <form class="item">
+                    <div ng-include="'templates/productMenuManagement/rabat.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    </button>
+                </form>
+
+                <form class="item">
+                    <div ng-include="'templates/productMenuManagement/photo.html'"></div>
+
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="editProduct()">Edytuj produkt</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--/row-->
+</div>
+<!-- /.container-fluid -->

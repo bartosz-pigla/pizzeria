@@ -1,0 +1,71 @@
+<h1><strong>Wprowadz informacje o pizzy</strong></h1>
+<div class="form-group">
+    <label for="pizzaNameInput">Nazwa pizzy</label> <input
+        type="text" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name"/>
+</div>
+
+<div class="form-group">
+    <label>Rodzaj ciasta do pizzy</label>
+
+    <div class="radio">
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="grube">Grube</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="cienkie">Cienkie</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>Rozmiar pizzy</label>
+
+    <div class="radio">
+        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="mala">Mala</label>
+    </div>
+    <div class="radio">
+        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="duza">Duza</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label>Skladniki pizzy</label>
+
+        <div class="span3" ng-repeat="ingredient in allIngredients">
+        <label>
+            <input type="checkbox" checklist-model="controller.selectedItem.ingredients" checklist-value="ingredient">
+            {{ingredient.name}}
+        </label>
+        </div>
+
+
+    <!--<div class="row-fluid checkbox">-->
+        <!--<p>{{allPizzaIngredients}}</p>-->
+        <!--<p>{{selectedItem.allSeasonings}}</p>-->
+        <!--<div class="span3" ng-repeat="ingredient in allPizzaIngredients">-->
+            <!--<label>-->
+                <!--<input-->
+                        <!--type="checkbox"-->
+                        <!--checklist-model="{{selectedItem.allSeasonings[$index]}}"-->
+                        <!--checklist-value="{{ingredient}}"-->
+                <!--/>-->
+                <!--{{ingredient}}-->
+            <!--</label>-->
+
+            <!--<label>-->
+                <!--<input-->
+                        <!--type="checkbox"-->
+                        <!--checklist-model="{{getAllSeasonings()}}"-->
+                        <!--checklist-value="{{ingredient}}"-->
+                        <!--ng-checked="selectedPizzaIngredients.indexOf(ingredient) > -1"-->
+                        <!--ng-click="toggle(ingredient)"/>-->
+                <!--{{ingredient}}-->
+
+            <!--</label>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+
+<div class="form-group">
+    <label for="pizzaDescriptionInput">Opis pizzy</label> <textarea
+        type="text" ng-model="controller.selectedItem.description" class="form-control" id="pizzaDescriptionInput"
+        placeholder="Opis pizzy"></textarea>
+</div>

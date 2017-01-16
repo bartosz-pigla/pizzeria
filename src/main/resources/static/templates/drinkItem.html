@@ -1,0 +1,20 @@
+<a style="color:black">
+    <div class="thumbnail">
+        <img ng-src="{{item.photoUrl}}"  alt="Generic placeholder thumbnail"/>
+    </div>
+    <div class="caption">
+        <h3>{{item.name}}</h3>
+        <h3>{{item.literCount}}</h3>
+        <p style="margin: 0px"><strong>Cena: </strong>{{item.price}}</p>
+        <p>
+            <!-- if customer is not anonymous(logged in)-->
+            <a class="btn btn-info btn-sm" ng-if="operation == 'edit'" ng-click="controller.openItem($index)">
+                <span>Wybierz do edycji</span>
+            </a>
+
+            <a class="btn btn-info btn-sm" ng-if="operation == 'delete'"  ng-click="toggleDialog($index)">
+                <span>Wybierz do usuniecia</span>
+            </a>
+        </p>
+    </div>
+</a>

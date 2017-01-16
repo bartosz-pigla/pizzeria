@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body ng-app="pizzaShopManagementApp" ng-cloak class="ng-cloak">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid" ng-controller="navigationController as nav">
+        <!-- Grupowanie "marki" i przycisku rozwijania mobilnego menu -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Rozwi� nawigacj�</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <div ng-class="{active:nav.tab('selectOptionController')}"><a class="navbar-brand" href="#selectOption"><strong>Panel administracyjny pizzerii</strong></a></div>
+        </div>
+
+        <!-- Grupowanie element�w menu w celu lepszego wy�wietlania na urz�dzeniach moblinych -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" >
+                <li ng-class="{active:nav.tab('readComplaintController')}"><a href="#readComplaint"><span>Przeglądanie reklamacji</span>
+                </a></li>
+                <li class="dropdown"><a class="dropdown-toggle"
+                                        data-toggle="dropdown"> <span>Zarządzanie menu</span>
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-class="{active:nav.tab('addProductController')}"><a href="#addProduct"><span
+                        >Dodaj produkt</span></a></li>
+                        <li ng-class="{active:nav.tab('editProductController')}"><a href="#editProduct"><span
+                        >Edytuj produkt</span></a></li>
+                        <li ng-class="{active:nav.tab('deleteProductController')}"><a href="#deleteProduct"><span
+                        >Usun produkt</span></a></li>
+                        <!-- <li class="divider"></li> -->
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="?lang=en"><strong>Zalogowano jako: Bartosz Pigla (kierownik)</strong> </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="?lang=en">English </a></li>
+                <li><a href="?lang=pl">Polski </a></li>
+                <li><a href="#"> </a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+<div class="container-fluid" ng-view></div>
+<!-- /.container-fluid -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="js/filterToggle.js"></script>
+
+<script src="js/controllers/start.js"></script>
+<script src="js/controllers/navigation.js"></script>
+
+<script src="js/controllers/addProduct.js"></script>
+<script src="js/controllers/editProduct.js"></script>
+<script src="js/controllers/deleteProduct.js"></script>
+<script src="js/controllers/readComplaint.js"></script>
+
+<script src="js/controllers/selectOption.js"></script>
+
+<script src="js/toggleAlertDialog.js"></script>
+
+<script src="js/helpers/additionalProductInfo.js"></script>
+<script src="js/helpers/complaintConsumer.js"></script>
+<script src="js/helpers/globalUrl.js"></script>
+<script src="js/helpers/itemSelection.js"></script>
+<script src="js/helpers/productConsumer.js"></script>
+
+</body>
+</html>

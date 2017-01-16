@@ -1,0 +1,22 @@
+<h1><strong>Ustal rabat</strong></h1>
+
+<div class="radio">
+    <label><input type="radio" name="optradio" ng-model="controller.selectedItem.rebate" value="2 w jednym">2 w jednym</label>
+</div>
+<div class="radio">
+    <label><input type="radio"  name="optradio" ng-model="controller.selectedItem.rebate" value="zaplac za 3 a damy 1">zaplac za 3 a damy 1</label>
+</div>
+<div class="radio">
+    <label><input type="radio" name="optradio" ng-model="controller.selectedItem.rebate" value="50% znizki za 3 duza pizze">50% znizki za 3 duza pizze</label>
+</div>
+
+
+
+
+<div class="span3" ng-repeat="rebate in allRebates">
+    <label>
+        <input type="checkbox" checklist-model="controller.selectedItem.rebates" checklist-value="rebate"/>
+        {{ingredient.name}}
+
+    </label>
+</div>

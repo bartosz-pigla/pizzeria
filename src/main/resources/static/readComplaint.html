@@ -1,0 +1,119 @@
+<div class="row">
+    <!--left-->
+    <div class="col-md-2" id="leftCol">
+        <div class="nav nav-stacked" id="sidebar">
+
+        </div>
+    </div>
+    <!--/left-->
+
+    <!--right-->
+    <div class="col-md-9" ng-if="selectedIdx == -1">
+
+        <h1>Reklamacje</h1>
+
+        <table class="table table-striped ">
+            <thead>
+            <th>e-mail</th>
+            <th>Imie klienta</th>
+            <th>Nazwisko klienta</th>
+            <th>Kwota zamowienia</th>
+            <th>Data zlozenia zamowienia</th>
+            <th>Data zlozenia reklamacji</th>
+            <th></th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="complaint in collection">
+                <td>{{complaint.order.client.eMail}}</td>
+                <td>{{complaint.order.client.firstName}}</td>
+                <td>{{complaint.order.client.surname}}</td>
+                <td>{{complaint.order.price}}</td>
+                <td>{{complaint.order.orderDate}}</td>
+                <td>{{complaint.submitDate}}</td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="controller.openItem($index)">Szczegoly</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="container-fluid" ng-include="'templates/paginationPanel.html'"></div>
+
+    </div>
+
+    <div class="col-md-9" ng-if="selectedIdx != -1">
+        <button type="button" class="btn btn-default" ng-click="controller.openItem(-1)">Powrot</button>
+
+        <h1>Reklamacja</h1>
+
+        <h3>Komentarz klienta</h3>
+
+        <p>{{selectedItem.comment}}</p>
+
+        <h3>Klient</h3>
+
+        <table class="table table-user-information">
+            <tbody>
+            <tr>
+                <td>Imie:</td>
+                <td>{{selectedItem.order.client.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Nazwisko</td>
+                <td>{{selectedItem.order.client.surname}}</td>
+            </tr>
+
+            <tr>
+                <td>E-mail</td>
+                <td>{{selectedItem.order.client.eMail}}</td>
+            </tr>
+
+            <tr>
+                <td>Typ klienta</td>
+                <td>{{selectedItem.order.client.clientType}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Zamowienie</h3>
+
+        <table class="table table-user-information">
+            <tbody>
+            <tr>
+                <td>Cena zamowienia:</td>
+                <td>{{selectedItem.order.price}}</td>
+            </tr>
+            <tr>
+                <td>Data zlozenia zamowienia</td>
+                <td>{{selectedItem.order.orderDate}}</td>
+            </tr>
+            <tr>
+                <td>Data zlozenia reklamacji</td>
+                <td>{{selectedItem.submitDate}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Pozycje zamowienia</h3>
+
+        <table class="table table-striped ">
+            <thead>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Liczba</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="position in selectedItem.order.orderPositionsList">
+                <td>{{position.product.name}}</td>
+                <td>{{position.price}} zl</td>
+                <td>{{position.count}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-default" ng-click="controller.controller.openItem(-1)">Powrot</button>
+    </div>
+    <!--</table>-->
+    <!--/right-->
+</div>

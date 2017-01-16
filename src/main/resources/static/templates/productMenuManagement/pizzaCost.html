@@ -1,0 +1,15 @@
+<h1><strong>Ustal cene produktu</strong></h1>
+<div class="form-group">
+    <label for="priceForSmallPizza" >Cena pizzy</label> <input
+        ng-model="controller.selectedItem.price" type="number" class="form-control" id="priceForSmallPizza" placeholder="Cena malej pizzy" />
+</div>
+
+<div class="form-group" ng-if="controller.selectedItem.doughTypes == 'cienkie'">
+    <label for="priceForThinDoughType">Dodatkowy koszt dla ciasta cienkiengo</label> <input
+         type="number" class="form-control" id="priceForThinDoughType" placeholder="Dodatkowy koszt ciasta cienkiengo" ng-model="controller.selectedItem.doughPrice" />
+</div>
+
+<div class="form-group"  ng-if="controller.selectedItem.doughTypes == 'grube'">
+    <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label> <input
+        type="number" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" />
+</div>

@@ -1,0 +1,48 @@
+<div class="nav nav-stacked" id="sidebar">
+    <h3>Filtr produktow</h3>
+    <form class="container-fluid"
+
+          method="post">
+
+        <div class="checkbox">
+            <h4 class="glyphicon-minus" data-toggle="collapse"
+                data-target="#priceRange">Cena</h4>
+
+            <div class="container-fluid collapse in" id="priceRange">
+                <div role="form">
+                    <div class="form-group">
+                        <label for="fromPrice">Min</label> <input
+                            type="text" class="form-control" id="fromPrice"
+                    />
+                        <p></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="toPrice">Max</label> <input
+                            type="text" class="form-control" id="toPrice"
+                    />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <h4 class="glyphicon-minus" data-toggle="collapse"
+                data-target="#productType"
+            >Rodzaj produktu</h4>
+            <!--collapse in-->
+            <div class="container-fluid collapse in" id="displayResolutions">
+                <div class="col-md-4">
+                    <div class="checkbox">
+                        <label><input type="checkbox"/>Pizza</label>
+                        <label><input type="checkbox"/>Napoj</label>
+                        <label><input type="checkbox"/>Sos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default"
+        >Filtruj</button>
+        <!--  <input type="submit" th:value="#{leftSide.filterButton}" />-->
+    </form>
+</div>
