@@ -28,8 +28,9 @@ angular.module('pizzaShopManagementApp')
             };
             getAllIngredients($scope,$http);
             getAllRebates($scope,$http);
+            getAllSeasonings($scope,$http);
 
-            self.selectedItem={'ingredients':[]};
+            self.selectedItem={'ingredients':[],'rebates':[], 'seasonings':[]};
         });
 
 var newProduct = function (self) {

@@ -1,22 +1,45 @@
 <h1><strong>Ustal rabat</strong></h1>
 
-<div class="radio">
-    <label><input type="radio" name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="2 w jednym">2 w jednym</label>
-</div>
-<div class="radio">
-    <label><input type="radio"  name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="zaplac za 3 a damy 1">zaplac za 3 a damy 1</label>
-</div>
-<div class="radio">
-    <label><input type="radio" name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="50% znizki za 3 duza pizze">50% znizki za 3 duza pizze</label>
-</div>
+<!--<div class="radio">-->
+    <!--<label><input type="radio" name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="2 w jednym">2 w jednym</label>-->
+<!--</div>-->
+<!--<div class="radio">-->
+    <!--<label><input type="radio"  name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="zaplac za 3 a damy 1">zaplac za 3 a damy 1</label>-->
+<!--</div>-->
+<!--<div class="radio">-->
+    <!--<label><input type="radio" name="rebateTypeRadio" ng-model="controller.selectedItem.rebate" value="50% znizki za 3 duza pizze">50% znizki za 3 duza pizze</label>-->
+<!--</div>-->
 
 
 
 
-<div class="span3" ng-repeat="rebate in allRebates">
-    <label>
-        <input type="checkbox" checklist-model="controller.selectedItem.rebates" checklist-value="rebate"/>
-        {{ingredient.name}}
+<!--<div class="span3" ng-repeat="rebate in allRebates">-->
+    <!--<label>-->
+        <!--<input type="checkbox" checklist-model="controller.selectedItem.rebates" checklist-value="rebate"/>-->
+        <!--{{rebate.name}}-->
 
-    </label>
+    <!--</label>-->
+<!--</div>-->
+
+<!--<div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaSizeRadio.$error.required && pizzaInfo.pizzaSizeRadio.$touched">-->
+    <!--<a href="" class="close" data-dismiss="alert">&times;</a>-->
+    <!--<strong>Błąd</strong>-->
+    <!--<span>Proszę wybrać rozmiar pizzy.</span>-->
+<!--</div>-->
+
+
+<div class="form-group">
+    <div class="span3" ng-repeat="rebate in allRebates">
+
+            <input type="checkbox" name="rebateCheckBox" checklist-model="controller.selectedItem.rebates" checklist-value="rebate" ng-click="controller.rebatesTouched=true"/>
+            {{rebate.name}}
+
+
+    </div>
+    <p>{{controller.selectedItem.rebates}}</p>
+    <div class="alert alert-danger fade in" ng-show="controller.selectedItem.rebates.length==0 && controller.rebatesTouched==true">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wybrać przynajmniej jeden rabat.</span>
+    </div>
 </div>

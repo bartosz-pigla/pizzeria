@@ -115,7 +115,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!rebateForm.$valid">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!rebateForm.$valid || controller.selectedItem.rebates.length == 0">Dalej
                     </button>
                 </form>
 

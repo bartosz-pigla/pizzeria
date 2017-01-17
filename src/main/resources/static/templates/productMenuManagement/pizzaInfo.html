@@ -48,7 +48,7 @@
     <label>Skladniki pizzy</label>
         <div class="span3" ng-repeat="ingredient in allIngredients">
 
-            <input type="checkbox" ng-click="controller.ingredientsTouched=true" name="ingredientCheckBox" checklist-model="controller.selectedItem.ingredients" checklist-value="ingredient">
+            <input type="checkbox" name="ingredientCheckBox" checklist-model="controller.selectedItem.ingredients" checklist-value="ingredient" ng-click="controller.ingredientsTouched=true">
             {{ingredient.name}}
 
         </div>
@@ -57,6 +57,7 @@
         <strong>Błąd</strong>
         <span>Proszę wybrać przynajmniej jeden składnik.</span>
     </div>
+
 </div>
 
 <div class="form-group">
