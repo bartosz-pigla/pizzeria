@@ -1,5 +1,5 @@
 <div class="row">
-    {{controller.selectedItem}}
+    <!--{{controller.selectedItem}}-->
 
     <!--left-->
     <div class="col-md-2" id="leftCol">
@@ -35,19 +35,29 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <form class="item active" ng-init="controller.selectedItem.type='pizza'">
+                <!--<form class="item active" ng-init="controller.selectedItem.type='pizza'">-->
+                <form name="productTypeForm" class="item active" novalidate>
                     <h1><strong>Wybierz rodzaj produktu</strong></h1>
                     <div class="radio">
-                        <label><input type="radio" ng-model="controller.selectedItem.type" value="pizza">Pizza</label>
+                        <label><input type="radio" name="productTypeRadio" ng-model="controller.selectedItem.type" value="pizza" ng-required="!controller.selectedItem.type">Pizza</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" ng-model="controller.selectedItem.type" value="sos">Sos</label>
+                        <label><input type="radio" name="productTypeRadio" ng-model="controller.selectedItem.type" value="sos" ng-required="!controller.selectedItem.type">Sos</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" ng-model="controller.selectedItem.type" value="napoj">Napoj</label>
+                        <label><input type="radio" name="productTypeRadio" ng-model="controller.selectedItem.type" value="napoj" ng-required="!controller.selectedItem.type">Napoj</label>
                     </div>
+                    <!--<input type="email" ng-model="validation1" name="validation1" required="">-->
 
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej</button>
+                    <!--<div ng-show="form1.validation1.$touched">-->
+                        <!--<span ng-show="form1.validation1.$error.required">Email required.</span>-->
+                        <!--<span ng-show="form1.validation1.$error.email">Bad email</span>-->
+                        <!--<p>touched</p>-->
+                        <!--<p>{{form1.validation1.$error}}</p>-->
+
+                    <!--</div>-->
+                    <!--<p>{{form1.validation1.$valid}}</p>-->
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!productTypeForm.productTypeRadio.$valid">Dalej</button>
                 </form>
 
                 <form name="pizzaInfo" class="item" ng-if="controller.selectedItem.type == 'pizza'">
@@ -55,7 +65,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!pizzaInfo.$valid || controller.selectedItem.ingredients.length==0">Dalej
                     </button>
                 </form>
                 <form name="sauceInfo" ng-if="controller.selectedItem.type == 'sos'" class="item">
@@ -63,7 +73,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next"  ng-disabled="!sauceInfo.$valid || controller.selectedItem.seasonings.length==0">Dalej
                     </button>
                 </form>
                 <form name="drinkInfo" ng-if="controller.selectedItem.type == 'napoj'" class="item">
@@ -71,7 +81,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next"  ng-disabled="!drinkInfo.$valid">Dalej
                     </button>
                 </form>
 
@@ -80,7 +90,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!pizzaCost.$valid">Dalej
                     </button>
                 </form>
                 <form name="sauceCost" ng-if="controller.selectedItem.type == 'sos'" class="item">
@@ -88,7 +98,7 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next"  ng-disabled="!sauceCost.$valid">Dalej
                     </button>
                 </form>
                 <form name="drinkCost" ng-if="controller.selectedItem.type == 'napoj'" class="item">
@@ -96,25 +106,25 @@
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next"  ng-disabled="!drinkCost.$valid">Dalej
                     </button>
                 </form>
 
-                <form class="item">
-                    <div ng-include="'templates/productMenuManagement/rabat.html'"></div>
+                <form name="rebateForm" class="item">
+                    <div ng-include="'templates/productMenuManagement/rebate.html'"></div>
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!rebateForm.$valid">Dalej
                     </button>
                 </form>
 
-                <form class="item">
+                <form name="imageUrlForm" class="item">
                     <div ng-include="'templates/productMenuManagement/photo.html'"></div>
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-primary" data-slide="next"
+                    <button href="#carousel-example-generic" class="btn btn-primary" data-slide="next" ng-disabled="!imageUrlForm.$valid"
                             ng-click="controller.addProduct()">
                         Dodaj produkt
                     </button>

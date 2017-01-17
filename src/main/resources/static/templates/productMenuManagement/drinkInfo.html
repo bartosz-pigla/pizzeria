@@ -1,16 +1,32 @@
 <h1><strong>Wprowadz informacje o napoju</strong></h1>
 
 <div class="form-group">
-    <label for="drinkNameInput">Nazwa napoju</label> <input
-        type="text" class="form-control" id="drinkNameInput" placeholder="Nazwa napoju" ng-model="controller.selectedItem.name"/>
+    <label for="drinkNameInput">Nazwa napoju</label> <input name="drinkName"
+        type="text" class="form-control" id="drinkNameInput" placeholder="Nazwa napoju" ng-model="controller.selectedItem.name" required/>
+    <div class="alert alert-danger fade in" ng-show="drinkInfo.drinkName.$error.required && drinkInfo.drinkName.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać nazwę napoju.</span>
+    </div>
+
 </div>
 
 <div class="form-group">
-    <label for="litreCountInput">Liczba litrow</label> <input
-        type="text" class="form-control" id="litreCountInput" placeholder="Liczba litrow"  ng-model="controller.selectedItem.literCount"/>
+    <label for="litreCountInput">Liczba litrow</label> <input name="literCount"
+        type="text" class="form-control" id="litreCountInput" placeholder="Liczba litrow"  ng-model="controller.selectedItem.literCount" required/>
+    <div class="alert alert-danger fade in" ng-show="drinkInfo.literCount.$error.required && drinkInfo.literCount.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać nazwę napoju.</span>
+    </div>
 </div>
 
 <div class="form-group">
-    <label for="drinkDescriptionInput">Opis napoju</label> <textarea
-        type="text" class="form-control" id="drinkDescriptionInput" placeholder="Opis napoju"   ng-model="controller.selectedItem.description"></textarea>
+    <label for="drinkDescriptionInput">Opis napoju</label> <textarea name="description"
+        type="text" class="form-control" id="drinkDescriptionInput" placeholder="Opis napoju"   ng-model="controller.selectedItem.description" required></textarea>
+    <div class="alert alert-danger fade in" ng-show="drinkInfo.description.$error.required && drinkInfo.description.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać opis napoju.</span>
+    </div>
 </div>

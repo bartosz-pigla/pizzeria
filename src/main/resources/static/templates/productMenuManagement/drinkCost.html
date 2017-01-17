@@ -1,6 +1,12 @@
 <h1><strong>Ustal cene napoju</strong></h1>
 
 <div class="form-group">
-    <label for="priceForDrink">Cena napoju</label> <input
-        type="number" class="form-control" id="priceForDrink" placeholder="Cena napoju" ng-required="{number}" ng-model="controller.selectedItem.price"/>
+    <label for="priceForDrink">Cena napoju</label> <input name="price"
+        type="number" class="form-control" id="priceForDrink" placeholder="Cena napoju" ng-model="controller.selectedItem.price" required/>
+
+    <div class="alert alert-danger fade in" ng-show="drinkCost.price.$error.required && pizzaCost.price.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać cenę napoju.</span>
+    </div>
 </div>

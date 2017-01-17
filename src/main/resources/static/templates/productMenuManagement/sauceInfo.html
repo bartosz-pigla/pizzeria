@@ -1,31 +1,58 @@
 <h1><strong>Wprowadz informacje o sosie</strong></h1>
 
 <div class="form-group">
-    <label for="sauceNameInput">Nazwa sosu</label> <input
-        type="text" class="form-control" id="sauceNameInput" placeholder="Nazwa sosu" ng-model="controller.selectedItem.name"/>
+    <label for="sauceNameInput">Nazwa sosu</label>
+    <input type="text" name="sauceName" class="form-control" id="sauceNameInput" placeholder="Nazwa sosu" ng-model="controller.selectedItem.name" required/>
+
+    <div class="alert alert-danger fade in" ng-show="sauceInfo.sauceName.$error.required && sauceInfo.sauceName.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać nazwę.</span>
+    </div>
 </div>
+
+<!--<div class="form-group">-->
+    <!--<label>Przyprawy do sosu</label>-->
+
+    <!--<div class="row-fluid checkbox">-->
+        <!--<div class="span3" ng-repeat="seasoning in selectedItem.seasonings">-->
+            <!--<label>-->
+                <!--<input-->
+                        <!--type="checkbox"-->
+                        <!--name="selectedSeasonings[]"-->
+                        <!--value="{{seasoning}}"-->
+                        <!--ng-checked="selectedSeasonings.indexOf(seasoning) > -1"-->
+                        <!--ng-click="toggle(seasoning)"/>-->
+
+                <!--{{seasoning}}-->
+
+            <!--</label>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <div class="form-group">
     <label>Przyprawy do sosu</label>
+    <div class="span3" ng-repeat="seasoning in allSeasonings">
 
-    <div class="row-fluid checkbox">
-        <div class="span3" ng-repeat="seasoning in selectedItem.seasonings">
-            <label>
-                <input
-                        type="checkbox"
-                        name="selectedSeasonings[]"
-                        value="{{seasoning}}"
-                        ng-checked="selectedSeasonings.indexOf(seasoning) > -1"
-                        ng-click="toggle(seasoning)"/>
+        <input type="checkbox" ng-click="controller.seasoningsTouched=true" name="seasoningCheckBox" checklist-model="controller.selectedItem.seasonings" checklist-value="seasoning">
+        {{seasoning.name}}
 
-                {{seasoning}}
-
-            </label>
-        </div>
+    </div>
+    <div class="alert alert-danger fade in" ng-show="controller.selectedItem.seasonings.length==0 && controller.seasoningsTouched==true">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wybrać przynajmniej jedną przyprawę.</span>
     </div>
 </div>
 
 <div class="form-group">
     <label for="sauceDescriptionInput">Opis sosu</label> <textarea
-        type="text" class="form-control" id="sauceDescriptionInput" placeholder="Opis sosu"></textarea>
+        type="text" name=sauceDescription" class="form-control" id="sauceDescriptionInput" placeholder="Opis sosu" required></textarea>
+
+    <div class="alert alert-danger fade in" ng-show="sauceInfo.sauceDescription.$error.required && sauceInfo.sauceDescription.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać opis sosu.</span>
+    </div>
 </div>

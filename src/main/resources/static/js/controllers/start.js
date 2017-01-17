@@ -1,4 +1,4 @@
-var pizzaShopManagementApp = angular.module('pizzaShopManagementApp',['ngRoute'])
+var pizzaShopManagementApp = angular.module('pizzaShopManagementApp',['ngRoute','checklist-model'])
     .config(
         function ($routeProvider, $httpProvider) {
             $routeProvider

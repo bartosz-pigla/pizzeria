@@ -1,15 +1,35 @@
 <h1><strong>Ustal cene produktu</strong></h1>
 <div class="form-group">
-    <label for="priceForSmallPizza" >Cena pizzy</label> <input
-        ng-model="controller.selectedItem.price" type="number" class="form-control" id="priceForSmallPizza" placeholder="Cena malej pizzy" />
+    <label for="priceForSmallPizza" >Cena pizzy</label>
+    <input name="price"
+        ng-model="controller.selectedItem.price" type="number" class="form-control" id="priceForSmallPizza" placeholder="Cena malej pizzy" required/>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaCost.price.$error.required && pizzaCost.price.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać cenę pizzy.</span>
+    </div>
 </div>
 
 <div class="form-group" ng-if="controller.selectedItem.doughTypes == 'cienkie'">
-    <label for="priceForThinDoughType">Dodatkowy koszt dla ciasta cienkiengo</label> <input
-         type="number" class="form-control" id="priceForThinDoughType" placeholder="Dodatkowy koszt ciasta cienkiengo" ng-model="controller.selectedItem.doughPrice" />
+    <label for="priceForThinDoughType">Dodatkowy koszt dla ciasta cienkiengo</label>
+    <input type="number" name="doughPrice" class="form-control" id="priceForThinDoughType" placeholder="Dodatkowy koszt ciasta cienkiengo" ng-model="controller.selectedItem.doughPrice" required/>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required && pizzaCost.price.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać cenę ciasta do pizzy.</span>
+    </div>
 </div>
 
 <div class="form-group"  ng-if="controller.selectedItem.doughTypes == 'grube'">
-    <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label> <input
-        type="number" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" />
+    <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label>
+    <input type="number" name="doughPrice" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" required/>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required && pizzaCost.price.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać cenę ciasta do pizzy.</span>
+    </div>
 </div>
+

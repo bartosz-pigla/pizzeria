@@ -1,2 +1,2 @@
 //var globalUrl ='pizzahop22.herokuapp.com/';
-var globalUrl ='';
+var globalUrl ='http://localhost:8080/';

@@ -1,25 +1,25 @@
-var getAllIngredients=function (self,$http) {
+var getAllIngredients=function ($scope,$http) {
     $http.get(globalUrl +'ingredient/read/all').then(function (response) {
-        self.allIngredients=[];
+        $scope.allIngredients=[];
         for(var i=0;i<response.data.length;i++){
-            self.allIngredients.push(response.data[i]);
+            $scope.allIngredients.push(response.data[i]);
         }
     });
 };
-var getAllSeasonings=function (self,$http) {
+
+var getAllSeasonings=function ($scope,$http) {
     $http.get(globalUrl +'seasoning/read/all').then(function (response) {
-        self.allSeasonings=[];
+        $scope.allSeasonings=[];
         for(var i=0;i<response.data.length;i++){
-            self.allSeasonings.push(response.data[i]);
+            $scope.allSeasonings.push(response.data[i]);
         }
     });
 };
-var getAllRebates=function (self,$http) {
+var getAllRebates=function ($scope,$http) {
     $http.get(globalUrl +'rebate/read/all').then(function (response) {
-        self.allRebates=[];
+        $scope.allRebates=[];
         for(var i=0;i<response.data.length;i++){
-            self.allRebates.push(response.data[i]);
-            console.log(self.allRebates);
+            $scope.allRebates.push(response.data[i]);
         }
     });
 };

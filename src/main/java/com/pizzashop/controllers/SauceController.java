@@ -45,6 +45,4 @@ public class SauceController {
 
         return sauces;
     }
-    int foo(){return 0;}
-
 }

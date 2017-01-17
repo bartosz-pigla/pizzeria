@@ -26,14 +26,11 @@ angular.module('pizzaShopManagementApp')
 
                 newProduct(self);
             };
+            getAllIngredients($scope,$http);
+            getAllRebates($scope,$http);
 
-            getAllIngredients(self,$http);
-            getAllIngredients(self,$http);
-            getAllRebates(self,$http);
-
-            //self.toggle = toggleDialog;
-        })
-;
+            self.selectedItem={'ingredients':[]};
+        });
 
 var newProduct = function (self) {
     self.selectedItem = {

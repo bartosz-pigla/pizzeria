@@ -3,6 +3,7 @@ package com.pizzashop.controllers;
 import com.pizzashop.models.Rebate;
 import com.pizzashop.repositories.RebateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ public class RebateController {
     @Autowired
     RebateRepository rebateRepository;
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Rebate> readAll(){
         return rebateRepository.findAll();

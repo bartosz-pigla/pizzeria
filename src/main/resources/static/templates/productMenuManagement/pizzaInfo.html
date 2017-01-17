@@ -1,17 +1,29 @@
 <h1><strong>Wprowadz informacje o pizzy</strong></h1>
 <div class="form-group">
     <label for="pizzaNameInput">Nazwa pizzy</label> <input
-        type="text" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name"/>
+        type="text" name="pizzaName" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name" required/>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaName.$error.required && pizzaInfo.pizzaName.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wpisać nazwę pizzy.</span>
+    </div>
 </div>
 
 <div class="form-group">
     <label>Rodzaj ciasta do pizzy</label>
 
     <div class="radio">
-        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="grube">Grube</label>
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="grube" ng-required="!controller.selectedItem.doughTypes">Grube</label>
     </div>
     <div class="radio">
-        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="cienkie">Cienkie</label>
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="cienkie" ng-required="!controller.selectedItem.doughTypes">Cienkie</label>
+    </div>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaInfo.doughTypeRadio.$error.required && pizzaInfo.doughTypeRadio.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wybrać rodzaj ciasta.</span>
     </div>
 </div>
 
@@ -19,49 +31,32 @@
     <label>Rozmiar pizzy</label>
 
     <div class="radio">
-        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="mala">Mala</label>
+        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="mala" ng-required="!controller.selectedItem.size">Mala</label>
     </div>
     <div class="radio">
-        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="duza">Duza</label>
+        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="duza" ng-required="!controller.selectedItem.size">Duza</label>
+    </div>
+
+    <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaSizeRadio.$error.required && pizzaInfo.pizzaSizeRadio.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wybrać rozmiar pizzy.</span>
     </div>
 </div>
 
 <div class="form-group">
     <label>Skladniki pizzy</label>
-
         <div class="span3" ng-repeat="ingredient in allIngredients">
-        <label>
-            <input type="checkbox" checklist-model="controller.selectedItem.ingredients" checklist-value="ingredient">
+
+            <input type="checkbox" ng-click="controller.ingredientsTouched=true" name="ingredientCheckBox" checklist-model="controller.selectedItem.ingredients" checklist-value="ingredient">
             {{ingredient.name}}
-        </label>
+
         </div>
-
-
-    <!--<div class="row-fluid checkbox">-->
-        <!--<p>{{allPizzaIngredients}}</p>-->
-        <!--<p>{{selectedItem.allSeasonings}}</p>-->
-        <!--<div class="span3" ng-repeat="ingredient in allPizzaIngredients">-->
-            <!--<label>-->
-                <!--<input-->
-                        <!--type="checkbox"-->
-                        <!--checklist-model="{{selectedItem.allSeasonings[$index]}}"-->
-                        <!--checklist-value="{{ingredient}}"-->
-                <!--/>-->
-                <!--{{ingredient}}-->
-            <!--</label>-->
-
-            <!--<label>-->
-                <!--<input-->
-                        <!--type="checkbox"-->
-                        <!--checklist-model="{{getAllSeasonings()}}"-->
-                        <!--checklist-value="{{ingredient}}"-->
-                        <!--ng-checked="selectedPizzaIngredients.indexOf(ingredient) > -1"-->
-                        <!--ng-click="toggle(ingredient)"/>-->
-                <!--{{ingredient}}-->
-
-            <!--</label>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="alert alert-danger fade in" ng-show="controller.selectedItem.ingredients.length==0 && controller.ingredientsTouched==true">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Proszę wybrać przynajmniej jeden składnik.</span>
+    </div>
 </div>
 
 <div class="form-group">

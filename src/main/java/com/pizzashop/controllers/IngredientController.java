@@ -5,6 +5,7 @@ import com.pizzashop.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,15 +20,9 @@ public class IngredientController {
     @Autowired
     IngredientRepository ingredientRepository;
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
-    public ResponseEntity<List<Ingredient>> readAll(){
-        List<Ingredient> ingredients=null;
-        try{
-            ingredients = ingredientRepository.findAll();
-            return ResponseEntity.ok(ingredients);
-        }
-        catch (Exception exception){
-            return new ResponseEntity<>(ingredients, HttpStatus.NO_CONTENT);
-        }
+    public List<Ingredient> readAll(){
+        return ingredientRepository.findAll();
     }
 }
