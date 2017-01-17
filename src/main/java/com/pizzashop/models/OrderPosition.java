@@ -28,8 +28,10 @@ public class OrderPosition  implements Serializable {
     @JsonIgnore
     @NotNull
     private Order order;
+
     @NotNull
     private Product product;
+
     @NotNull
     private Rebate rebate;
 

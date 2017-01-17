@@ -2,11 +2,21 @@
 
 <div class="form-group">
     <label for="priceForDrink">Cena napoju</label> <input name="price"
-        type="number" class="form-control" id="priceForDrink" placeholder="Cena napoju" ng-model="controller.selectedItem.price" required/>
+        type="number" class="form-control" id="priceForDrink" placeholder="Cena napoju" ng-model="controller.selectedItem.price" ng-max="50.0" required/>
 
-    <div class="alert alert-danger fade in" ng-show="drinkCost.price.$error.required && pizzaCost.price.$touched">
-        <a href="" class="close" data-dismiss="alert">&times;</a>
-        <strong>Błąd</strong>
-        <span>Proszę wpisać cenę napoju.</span>
+    <div ng-show="drinkCost.price.$touched">
+        <div class="alert alert-danger fade in" ng-show="drinkCost.price.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać cenę napoju.</span>
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="drinkCost.price.$error.max">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Cena może wynosić maksymalnie 50 zł.</span>
+        </div>
     </div>
 </div>
+
+

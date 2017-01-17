@@ -1,12 +1,20 @@
 <h1><strong>Wprowadz informacje o pizzy</strong></h1>
 <div class="form-group">
     <label for="pizzaNameInput">Nazwa pizzy</label> <input
-        type="text" name="pizzaName" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name" required/>
+        type="text" name="pizzaName" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name" ng-maxlength="30" required/>
 
-    <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaName.$error.required && pizzaInfo.pizzaName.$touched">
-        <a href="" class="close" data-dismiss="alert">&times;</a>
-        <strong>Błąd</strong>
-        <span>Proszę wpisać nazwę pizzy.</span>
+    <div ng-show="pizzaInfo.pizzaName.$touched">
+        <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaName.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać nazwę pizzy.</span>
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaName.$error.maxlength">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Nazwa może zawierać maksymalnie 30 znaków.</span>
+        </div>
     </div>
 </div>
 
@@ -14,10 +22,10 @@
     <label>Rodzaj ciasta do pizzy</label>
 
     <div class="radio">
-        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="grube" ng-required="!controller.selectedItem.doughTypes">Grube</label>
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughType" value="grube" ng-required="!controller.selectedItem.doughType">Grube</label>
     </div>
     <div class="radio">
-        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughTypes" value="cienkie" ng-required="!controller.selectedItem.doughTypes">Cienkie</label>
+        <label><input type="radio" name="doughTypeRadio" ng-model="controller.selectedItem.doughType" value="cienkie" ng-required="!controller.selectedItem.doughType">Cienkie</label>
     </div>
 
     <div class="alert alert-danger fade in" ng-show="pizzaInfo.doughTypeRadio.$error.required && pizzaInfo.doughTypeRadio.$touched">
@@ -61,7 +69,21 @@
 </div>
 
 <div class="form-group">
-    <label for="pizzaDescriptionInput">Opis pizzy</label> <textarea
-        type="text" ng-model="controller.selectedItem.description" class="form-control" id="pizzaDescriptionInput"
-        placeholder="Opis pizzy"></textarea>
+    <label for="description">Opis pizzy</label> <textarea
+        type="text" ng-model="controller.selectedItem.description" class="form-control" id="description"
+        placeholder="Opis pizzy" ng-maxlength="255" required></textarea>
+
+    <div ng-show="pizzaInfo.description.$touched">
+        <div class="alert alert-danger fade in" ng-show="pizzaInfo.description.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać opis pizzy.</span>
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="pizzaInfo.description.$error.maxlength">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Nazwa może zawierać maksymalnie 255 znaków.</span>
+        </div>
+    </div>
 </div>

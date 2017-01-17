@@ -7,24 +7,37 @@ angular.module('pizzaShopManagementApp')
             self.failed = false;
 
             self.addProduct = function () {
+                var productType='';
+                switch(self.selectedItem.type){
+                    case 'pizza':
+                        productType='pizza';
+                        break;
+                    case 'sos':
+                        productType='sauce';
+                        break;
+                    case 'napoj':
+                        productType='drink';
+                        break;
+                }
                 $http
                     .post(
-                        globalUrl + 'pizza/create',
+                        globalUrl + productType + '/create',
                         self.selectedItem
                     )
                     .then(
                         function successCallback(response) {
                             self.added = true;
                             self.failed = false;
+                            self.serverValidationError=undefined;
+                            newProduct(self);
                         },
                         function errorCallback(response) {
                             self.added = false;
-                            self.failed = false;
+                            self.failed = true;
                             console.log(response);
+                            self.serverValidationError=response.data;
                         }
                     );
-
-                newProduct(self);
             };
             getAllIngredients($scope,$http);
             getAllRebates($scope,$http);

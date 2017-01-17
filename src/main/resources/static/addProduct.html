@@ -11,16 +11,22 @@
     <!--right-->
     <div class="col-md-9">
 
-        <div class="alert alert-success fade in" ng-if="controller.added == true">
-            <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+        <div class="alert alert-success fade in" ng-show="controller.added == true">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
             powodzeniem!</strong>
             Pomyslnie dodano produkt do menu
         </div>
 
-        <div class="alert alert-danger fade in" ng-if="controller.failed == true">
-            <a href="#" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+        <div class="alert alert-danger fade in" ng-show="controller.failed == true">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
             niepowodzeniem!</strong>
             Nie dodano produktu do menu
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="controller.serverValidationError !== undefined">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+            niepowodzeniem!</strong>
+            {{controller.serverValidationError}}
         </div>
 
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">

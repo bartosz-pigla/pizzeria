@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,12 +22,12 @@ public class PizzaController {
     PizzaRepository pizzaRepository;
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public void update(@RequestBody Pizza pizza) {
+    public void update(@RequestBody @Valid Pizza pizza) {
         pizzaRepository.save(pizza);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public Pizza create(@RequestBody Pizza pizza) {
+    public Pizza create(@RequestBody @Valid Pizza pizza) {
         return pizzaRepository.save(pizza);
     }
 

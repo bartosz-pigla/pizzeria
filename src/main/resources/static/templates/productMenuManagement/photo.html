@@ -1,12 +1,14 @@
 <h1><strong>Dodaj zdjecie produktu</strong></h1>
 
 <div class="form-group">
+
+    <label for="productImage"></label>
     <input type="url" name="imageUrl" id="productImage" ng-model="controller.selectedItem.photoUrl" type="file" name="image" size="chars" accept="image/*" required>
 
     <div class="alert alert-danger fade in" ng-show="imageUrlForm.imageUrl.$error.required && imageUrlForm.imageUrl.$touched">
         <a href="" class="close" data-dismiss="alert">&times;</a>
         <strong>Błąd</strong>
-        <span>Proszę wpisać cenę ciasta do pizzy.</span>
+        <span>Proszę wpisać link do zdjęcia produktu.</span>
     </div>
 </div>
 <src ng-src="{{selectedItem.photoUrl}}"/>

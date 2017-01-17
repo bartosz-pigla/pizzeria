@@ -2,34 +2,64 @@
 <div class="form-group">
     <label for="priceForSmallPizza" >Cena pizzy</label>
     <input name="price"
-        ng-model="controller.selectedItem.price" type="number" class="form-control" id="priceForSmallPizza" placeholder="Cena malej pizzy" required/>
+        ng-model="controller.selectedItem.price" type="number" class="form-control" id="priceForSmallPizza" placeholder="Cena malej pizzy" ng-max="50.0" required/>
 
     <div class="alert alert-danger fade in" ng-show="pizzaCost.price.$error.required && pizzaCost.price.$touched">
         <a href="" class="close" data-dismiss="alert">&times;</a>
         <strong>Błąd</strong>
         <span>Proszę wpisać cenę pizzy.</span>
     </div>
-</div>
 
-<div class="form-group" ng-if="controller.selectedItem.doughTypes == 'cienkie'">
-    <label for="priceForThinDoughType">Dodatkowy koszt dla ciasta cienkiengo</label>
-    <input type="number" name="doughPrice" class="form-control" id="priceForThinDoughType" placeholder="Dodatkowy koszt ciasta cienkiengo" ng-model="controller.selectedItem.doughPrice" required/>
+    <div ng-show="pizzaCost.price.$touched">
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.price.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać cenę pizzy.</span>
+        </div>
 
-    <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required && pizzaCost.price.$touched">
-        <a href="" class="close" data-dismiss="alert">&times;</a>
-        <strong>Błąd</strong>
-        <span>Proszę wpisać cenę ciasta do pizzy.</span>
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.price.$error.max">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Cena może wynosić maksymalnie 50 zł.</span>
+        </div>
     </div>
 </div>
 
-<div class="form-group"  ng-if="controller.selectedItem.doughTypes == 'grube'">
-    <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label>
-    <input type="number" name="doughPrice" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" required/>
+<div class="form-group" ng-if="controller.selectedItem.doughType == 'cienkie'">
+    <label for="priceForThinDoughType">Dodatkowy koszt dla ciasta cienkiengo</label>
+    <input type="number" name="doughPrice" class="form-control" id="priceForThinDoughType" placeholder="Dodatkowy koszt ciasta cienkiengo" ng-model="controller.selectedItem.doughPrice" ng-max="50.0" required/>
 
-    <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required && pizzaCost.price.$touched">
-        <a href="" class="close" data-dismiss="alert">&times;</a>
-        <strong>Błąd</strong>
-        <span>Proszę wpisać cenę ciasta do pizzy.</span>
+    <div ng-show="pizzaCost.price.$touched">
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać cenę ciasta pizzy.</span>
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.max">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Cena może wynosić maksymalnie 50 zł.</span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group"  ng-if="controller.selectedItem.doughType == 'grube'">
+    <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label>
+    <input type="number" name="doughPrice" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" ng-max="50.0" required/>
+
+    <div ng-show="pizzaCost.price.$touched">
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Proszę wpisać cenę ciasta pizzy.</span>
+        </div>
+
+        <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.max">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Cena może wynosić maksymalnie 50 zł.</span>
+        </div>
     </div>
 </div>
 
