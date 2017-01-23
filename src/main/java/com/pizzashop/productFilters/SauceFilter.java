@@ -10,7 +10,6 @@ import java.util.List;
  * Created by barte on 31/12/2016.
  */
 public class SauceFilter extends ProductFilter {
-
     protected List<Seasoning> seasonings;
 
     public SauceFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Seasoning> seasonings) {

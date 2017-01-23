@@ -18,7 +18,7 @@ public class SeasoningController {
     @Autowired
     SeasoningRepository seasoningRepository;
 
-    @CrossOrigin(origins = "http://localhost:63342")
+    //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Seasoning> readAll(){
         return seasoningRepository.findAll();

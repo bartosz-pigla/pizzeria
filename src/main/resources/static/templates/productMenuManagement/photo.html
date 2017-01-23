@@ -3,12 +3,17 @@
 <div class="form-group">
 
     <label for="productImage"></label>
-    <input type="url" name="imageUrl" id="productImage" ng-model="controller.selectedItem.photoUrl" type="file" name="image" size="chars" accept="image/*" required>
+    <input type="url" name="imageUrl" class="form-control" placeholder="Link url zdjęcia" id="productImage" ng-model="controller.selectedItem.imageUrl" type="file" name="image" size="chars" accept="image/*" image-url required>
 
-    <div class="alert alert-danger fade in" ng-show="imageUrlForm.imageUrl.$error.required && imageUrlForm.imageUrl.$touched">
+    <div class="alert alert-danger fade in" ng-show="imageUrl.imageUrl.$error.required && imageUrl.imageUrl.$touched">
         <a href="" class="close" data-dismiss="alert">&times;</a>
         <strong>Błąd</strong>
         <span>Proszę wpisać link do zdjęcia produktu.</span>
+    </div>
+    <div class="alert alert-danger fade in" ng-show="imageUrl.imageUrl.$error.imageUrl && imageUrl.imageUrl.$touched">
+        <a href="" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd</strong>
+        <span>Obsługiwane formaty plików: jpg, jpeg, png</span>
     </div>
 </div>
 <src ng-src="{{selectedItem.photoUrl}}"/>

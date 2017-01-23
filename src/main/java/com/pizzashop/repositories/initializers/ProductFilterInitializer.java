@@ -2,6 +2,7 @@ package com.pizzashop.repositories.initializers;
 
 import com.pizzashop.models.Pizza;
 import com.pizzashop.models.enums.DoughType;
+import com.pizzashop.models.enums.PizzaSize;
 import com.pizzashop.productFilters.DrinkFilter;
 import com.pizzashop.productFilters.PizzaFilter;
 import com.pizzashop.productFilters.SauceFilter;
@@ -38,6 +39,7 @@ public class ProductFilterInitializer {
                 .setRebates(rebateRepository.findAll())
                 .setDoughTypes(Arrays.asList(DoughType.values()))
                 .setIngredients(ingredientRepository.findAll())
+                .setPizzaSizes(Arrays.asList(PizzaSize.values()))
                 .createPizzaFilter();
     }
 
@@ -62,6 +64,7 @@ public class ProductFilterInitializer {
 
         pizzaFilter.setDoughTypes(newPizzaFilter.getDoughTypes());
         pizzaFilter.setIngredients(newPizzaFilter.getIngredients());
+        pizzaFilter.setPizzaSizes(newPizzaFilter.getPizzaSizes());
         pizzaFilter.setNames(newPizzaFilter.getNames());
         pizzaFilter.setRebates(newPizzaFilter.getRebates());
     }

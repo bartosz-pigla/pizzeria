@@ -17,6 +17,7 @@ public class ProductController {
     @Autowired
     ProductBaseRepository productRepository;
 
+    //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public List<Product> read(
             @RequestParam(value = "pageSize", required = true) Integer pageSize,
@@ -41,6 +42,12 @@ public class ProductController {
     @RequestMapping(value = "/delete/{productId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Integer productId) {
         productRepository.delete(productId);
+    }
+
+    //@CrossOrigin(origins = "http://localhost:63342")
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public Long count(){
+        return productRepository.count();
     }
 
 }

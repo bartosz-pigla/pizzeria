@@ -1,6 +1,6 @@
 angular.module('pizzaShopManagementApp')
     .controller('deleteProductController',
-        function ($http) {
+        function ($scope,$http) {
             var self = this;
 
             self.deleted = false;
@@ -9,9 +9,9 @@ angular.module('pizzaShopManagementApp')
 
             initializeItemsSelection(
                 self,
-                getProductsCount($http),
+                setPageProperties($http),
                 3,
-                getProducts,
+                setProducts,
                 $http
             );
 

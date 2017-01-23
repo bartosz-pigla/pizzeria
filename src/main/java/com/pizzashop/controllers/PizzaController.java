@@ -17,10 +17,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/pizza")
+//@CrossOrigin(origins = "http://localhost:63342")
 public class PizzaController {
     @Autowired
     PizzaRepository pizzaRepository;
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(@RequestBody @Valid Pizza pizza) {
         pizzaRepository.save(pizza);
@@ -43,7 +45,6 @@ public class PizzaController {
                 pizzaRepository
                         .findAll(pizzaSpecification, new PageRequest((pageNumber == null) ? 0 : pageNumber - 1, pageSize))
                         .getContent();
-
 
         return pizzas;
     }

@@ -1,31 +1,92 @@
 angular.module('pizzaShopManagementApp')
     .controller('editProductController',
-        function ($http) {
+        function ($scope,$http) {
             var self = this;
 
             self.edited = false;
-            self.operation = 'edit';
-            self.toggleDialog = toggleDialog;
+            self.failed = false;
 
-            initializeCheckBoxes(self, $http);
+            $scope.operation = 'edit';
+            $scope.toggleDialog = toggleDialog;
 
-            initializeItemsSelection(
-                self,
-                getProductsCount($http),
-                3,
-                getProducts,
-                $http
-            );
+            //initializeCheckBoxes(self, $http);
+
+            $scope.pageNumber=1;
+            $scope.selectedIdx=-1;
+
+            $scope.getCollection = function (pageNumber) {
+                $scope.pageNumber=pageNumber;
+                $scope.collection=setProducts($http, $scope,3);
+
+                console.log('getCollection method:collection');
+                console.log($scope.collection);
+            };
+
+            $scope.openItem= function (itemIndex) {
+
+                $scope.selectedIdx=itemIndex;
+
+                console.log('openItem:idx');
+                console.log($scope.selectedIdx);
+
+                if($scope.selectedIdx!=-1)
+                    self.selectedItem=$scope.collection[$scope.selectedIdx];
+            };
+
+            $scope.getCollection(1);
+
+            setFilter($scope,$http);
+
+            // getAllIngredients($scope,$http);
+            // getAllRebates($scope,$http);
+            // getAllSeasonings($scope,$http);
+
+            self.selectedItem={'ingredients':[],'rebates':[], 'seasonings':[]};
+
+
+            //setPageProperties($http,$scope,3);
+
+            // initializeItemsSelection(
+            //     $scope,
+            //     $http,
+            //     setProducts
+            // );
+
+            //init2($http,$scope);
+
+            // $http
+            //     .get(
+            //         globalUrl +'product/read?pageSize='+3+'&pageNumber='+1
+            //     )
+            //     .then(
+            //         function successCallback(response) {
+            //             console.log('products: ');
+            //             console.log(response.data);
+            //             $scope.collection=response.data;
+            //         },
+            //         function errorCallback(response) {
+            //             console.log('read products error: ');
+            //             console.log(response);
+            //         }
+            //     );
+            //
+            // $scope.selectedIdx=-1;
 
             self.editProduct = function () {
+                console.log('edit product');
+                console.log(self.selectedItem);
+
                 var url;
                 switch (self.selectedItem.type) {
                     case 'pizza':
                         url = globalUrl + 'pizza/update';
+                        break;
                     case 'sos':
                         url = globalUrl + 'sauce/update';
-                    case 'drink':
+                        break;
+                    case 'napoj':
                         url = globalUrl + 'drink/update';
+                        break;
                 }
 
                 $http
@@ -34,22 +95,28 @@ angular.module('pizzaShopManagementApp')
                     )
                     .then(
                         function successCallback(response) {
-                            self.collection[self.selectedIdx] = self.selectedItem;
+                            console.log('success:');
+                            console.log(self.selectedItem);
+                            console.log($scope.selectedIdx);
+                            console.log($scope.collection);
+                            $scope.collection[$scope.selectedIdx] = self.selectedItem;
                             self.edited = true;
                             self.failed = false;
+                            self.serverValidationError=undefined;
+                            $scope.selectedIdx = -1;
                         },
                         function errorCallback(response) {
                             self.edited = false;
                             self.failed = false;
+                            self.serverValidationError=response.data;
                             console.log(response);
                         }
                     );
 
-                self.selectedIdx = -1;
             };
 
-            console.log(self.selectedIdx);
-            console.log(self.selectedItem);
+            console.log($scope.selectedIdx);
+            console.log($scope.selectedItem);
         });
 
 

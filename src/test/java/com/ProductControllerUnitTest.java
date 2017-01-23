@@ -87,21 +87,23 @@ public class ProductControllerUnitTest {
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
 
-        Rebate rebate1 = new RebateBuilder().createRebate();
-        rebate1.setName("2 w 1");
+        Rebate rebate1 = new RebateBuilder()
+        .setName("2 w 1")
+                .createRebate();
 
-        Rebate rebate2 = new RebateBuilder().createRebate();
-        rebate2.setName("promocja");
+        Rebate rebate2 = new RebateBuilder()
+                .setName("promocja")
+                .createRebate();
 
         rebate1 = rebateRepository.save(rebate1);
         rebate2 = rebateRepository.save(rebate2);
         rebates.add(rebate1);
         rebates.add(rebate2);
 
-        drink = new DrinkBuilder().createDrink();
-        drink.setName("pepsi");
-        drink.addRebate(rebate1);
-        drink.addRebate(rebate2);
+        drink = new DrinkBuilder()
+        .setName("pepsi")
+        .addRebates(rebate1,rebate2)
+                .createDrink();
 
         drink = drinkRepository.save(drink);
     }

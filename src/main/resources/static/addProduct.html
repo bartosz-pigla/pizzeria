@@ -66,7 +66,7 @@
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!productTypeForm.productTypeRadio.$valid">Dalej</button>
                 </form>
 
-                <form name="pizzaInfo" class="item" ng-if="controller.selectedItem.type == 'pizza'">
+                <form id="pizzaInfo" name="pizzaInfo" class="item" ng-if="controller.selectedItem.type == 'pizza'" novalidate>
                     <div ng-include="'templates/productMenuManagement/pizzaInfo.html'"></div>
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
@@ -116,21 +116,21 @@
                     </button>
                 </form>
 
-                <form name="rebateForm" class="item">
+                <form name="rebate" class="item">
                     <div ng-include="'templates/productMenuManagement/rebate.html'"></div>
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!rebateForm.$valid || controller.selectedItem.rebates.length == 0">Dalej
+                    <button href="#carousel-example-generic" class="btn btn-default" data-slide="next" ng-disabled="!rebate.$valid || controller.selectedItem.rebates.length == 0">Dalej
                     </button>
                 </form>
 
-                <form name="imageUrlForm" class="item">
+                <form name="imageUrl" class="item">
                     <div ng-include="'templates/productMenuManagement/photo.html'"></div>
 
                     <button href="#carousel-example-generic" class="btn btn-default" data-slide="prev">Wstecz
                     </button>
-                    <button href="#carousel-example-generic" class="btn btn-primary" data-slide="next" ng-disabled="!imageUrlForm.$valid"
+                    <button type="submit" href="#carousel-example-generic" class="btn btn-primary" data-slide="next" ng-disabled="!imageUrl.$valid"
                             ng-click="controller.addProduct()">
                         Dodaj produkt
                     </button>

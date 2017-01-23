@@ -20,7 +20,6 @@ public class FilterRepositoryImpl implements FilterRepositoryCustom{
 
     public <T extends Nameable> List<String> getNames(Class<T> tClass) {
         Query query = entityManager.createQuery("select distinct entity.name from "+tClass.getName()+" entity ");
-
         return query.getResultList();
     }
 

@@ -30,6 +30,8 @@ angular.module('pizzaShopManagementApp')
                             self.failed = false;
                             self.serverValidationError=undefined;
                             newProduct(self);
+
+                            //$scope.pizzaInfo.$setPristine();
                         },
                         function errorCallback(response) {
                             self.added = false;
@@ -39,12 +41,15 @@ angular.module('pizzaShopManagementApp')
                         }
                     );
             };
+
             getAllIngredients($scope,$http);
             getAllRebates($scope,$http);
             getAllSeasonings($scope,$http);
 
             self.selectedItem={'ingredients':[],'rebates':[], 'seasonings':[]};
-        });
+
+
+    });
 
 var newProduct = function (self) {
     self.selectedItem = {

@@ -1,5 +1,6 @@
 package com.pizzashop.models;
 
+import com.pizzashop.annotations.ImageUrl;
 import com.pizzashop.annotations.Price;
 import com.pizzashop.models.interfaces.Nameable;
 import org.hibernate.annotations.*;
@@ -13,8 +14,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -36,23 +35,38 @@ public abstract class Product implements Serializable, Nameable {
     @Price
     private BigDecimal price;
     @NotEmpty
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private Set<Rebate> rebates = new HashSet<>();
+
+    @NotNull
+    @ImageUrl
+    private String imageUrl;
+
+    @Transient
+    protected String type;
 
     public Product() {
     }
 
-    public Product(
-            String name,
-            String description,
-            BigDecimal price,
-            Set<Rebate> rebates
-    ) {
+    public Product(String name, String description, BigDecimal price, Set<Rebate> rebates, String url) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.rebates = rebates;
+        this.imageUrl = url;
     }
+
+    //    public Product(
+//            String name,
+//            String description,
+//            BigDecimal price,
+//            Set<Rebate> rebates
+//    ) {
+//        this.name = name;
+//        this.description = description;
+//        this.price = price;
+//        this.rebates = rebates;
+//    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -113,17 +127,52 @@ public abstract class Product implements Serializable, Nameable {
         rebates.add(rebate);
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String url) {
+        this.imageUrl = url;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Product product = (Product) o;
-        return Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price);
+
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (price != null ? !price.equals(product.price) : product.price != null) return false;
+        return imageUrl != null ? imageUrl.equals(product.imageUrl) : product.imageUrl == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price);
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        return result;
     }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Product product = (Product) o;
+//        return Objects.equals(name, product.name) &&
+//                Objects.equals(price, product.price);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, price);
+//    }
 }

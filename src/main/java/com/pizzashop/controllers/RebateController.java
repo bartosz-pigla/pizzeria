@@ -18,7 +18,7 @@ public class RebateController {
     @Autowired
     RebateRepository rebateRepository;
 
-    @CrossOrigin(origins = "http://localhost:63342")
+    //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Rebate> readAll(){
         return rebateRepository.findAll();

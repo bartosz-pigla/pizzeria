@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by barte on 31/12/2016.
  */
-public abstract class ProductFilter {
+public class ProductFilter {
 
     protected List<Rebate> rebates;
 

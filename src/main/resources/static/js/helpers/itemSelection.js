@@ -1,31 +1,42 @@
-function initializeItemsSelection(self, itemsCount, pageSize, collectionGetter, $http){
-    self.selectedIdx=-1;
-    self.pageSize=pageSize;
-    self.pageCount=itemsCount/pageSize;
+function initializeItemsSelection($scope, $http, collectionSetter){
+    // $scope.selectedIdx=-1;
+    //
+    // console.log('initializing item selection');
+    // console.log($scope.selectedIdx);
+    //
+    // $scope.getCollection = function (pageNumber) {
+    //     $scope.pageNumber=pageNumber;
+    //     $scope.collection=collectionSetter($http, $scope);
+    //
+    //     console.log('initialize method:collection');
+    //     console.log($scope.collection);
+    // };
+    //
+    // $scope.getCollection(1);
+    //
+    // $scope.openItem= function (itemIndex) {
+    //     $scope.selectedIdx=itemIndex;
+    //     $scope.selectedItem=$scope.collection[$scope.selectedIdx];
+    // };
 
-    console.log('initializing item selection');
-    console.log(self.selectedIdx);
-
-    var getCollection = function (pageNumber) {
-        self.pageNumber=pageNumber;
-        self.collection=collectionGetter($http, self);
-        console.log(self.collection);
-    };
-
-    self.getCollection=getCollection;
-
-    self.openItem= function (itemIndex) {
-        self.selectedIdx=itemIndex;
-        self.selectedItem=self.collection[self.selectedIdx];
-    };
-
-    getCollection(1);
-
-    var pages = [];
-    for (var i = 0; i < self.pageCount; i++) {
-        console.log(pages);
-        pages.push(i + 1);
-    }
-
-    self.pages=pages;
 }
+//
+// function init2($http,$scope) {
+//     $http
+//         .get(
+//             globalUrl +'product/read?pageSize='+3+'&pageNumber='+1
+//         )
+//         .then(
+//             function successCallback(response) {
+//                 console.log('products: ');
+//                 console.log(response.data);
+//                 $scope.collection=response.data;
+//             },
+//             function errorCallback(response) {
+//                 console.log('read products error: ');
+//                 console.log(response);
+//             }
+//         );
+//
+//     $scope.selectedIdx=-1;
+// }

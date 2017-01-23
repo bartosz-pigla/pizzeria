@@ -23,22 +23,19 @@ import java.util.Set;
 public class Sauce extends Product implements Serializable, Nameable {
 
     @NotEmpty
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private Set<Seasoning> seasonings=new HashSet<>();
 
-    public Sauce(
-            String name,
-            String description,
-            BigDecimal price,
-            Set<Rebate> rebates,
-            Set<Seasoning> seasonings){
-        super(name,description,price,rebates);
-        this.seasonings=seasonings;
+    public Sauce(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, Set<Seasoning> seasonings) {
+        super(name, description, price, rebates, url);
+        this.seasonings = seasonings;
+        this.type="sos";
     }
 
     public Sauce(){
-
+        this.type="sos";
     }
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(

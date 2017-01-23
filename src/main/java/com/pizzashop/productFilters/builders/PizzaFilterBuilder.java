@@ -3,6 +3,7 @@ package com.pizzashop.productFilters.builders;
 import com.pizzashop.models.Ingredient;
 import com.pizzashop.models.Rebate;
 import com.pizzashop.models.enums.DoughType;
+import com.pizzashop.models.enums.PizzaSize;
 import com.pizzashop.productFilters.PizzaFilter;
 
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ public class PizzaFilterBuilder {
     private BigDecimal doughMinPrice;
     private BigDecimal doughMaxPrice;
     private List<DoughType> doughTypes;
+    private List<PizzaSize> pizzaSizes;
 
     public PizzaFilterBuilder setRebates(List<Rebate> rebates) {
         this.rebates = rebates;
@@ -58,7 +60,12 @@ public class PizzaFilterBuilder {
         return this;
     }
 
+    public PizzaFilterBuilder setPizzaSizes(List<PizzaSize> pizzaSizes){
+        this.pizzaSizes=pizzaSizes;
+        return this;
+    }
+
     public PizzaFilter createPizzaFilter() {
-        return new PizzaFilter(rebates, names, minPrice, maxPrice, ingredients, doughMinPrice, doughMaxPrice, doughTypes);
+        return new PizzaFilter(rebates, names, minPrice, maxPrice, ingredients, doughMinPrice, doughMaxPrice, doughTypes,pizzaSizes);
     }
 }

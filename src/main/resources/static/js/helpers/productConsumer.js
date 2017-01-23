@@ -1,35 +1,63 @@
-var getProducts=function ($http, self) {
+var setProducts=function ($http, $scope, pageSize) {
+    $scope.pageSize=pageSize;
+
     $http
         .get(
-            globalUrl +'product/read?pageSize='+self.pageSize+'&pageNumber='+self.pageNumber
+            globalUrl +'product/read?pageSize='+$scope.pageSize+'&pageNumber='+$scope.pageNumber
         )
         .then(
             function successCallback(response) {
-                console.log('products: ');
+                console.log('setProducts:products');
                 console.log(response.data);
-                return response.data;
+
+                $scope.collection=response.data;
+
+
+                $scope.pageCount=($scope.collection.length)/pageSize;
+
+                var pages = [];
+                for (var i = 0; i < $scope.pageCount; i++) {
+                    pages.push(i + 1);
+                }
+
+                $scope.pages=pages;
+
+                console.log('setProducts:pages');
+                console.log($scope.pages);
             },
             function errorCallback(response) {
-                console.log('read products error: ');
+                console.log('setProducts:read products error: ');
                 console.log(response);
             }
         );
 };
 
-var getProductsCount=function ($http) {
-    $http
-        .get(
-            globalUrl +'product/count'
-        )
-        .then(
-            function successCallback(response) {
-                console.log('product count');
-                console.log(response.data);
-                return response.data;
-            },
-            function errorCallback(response) {
-                console.log('read count of product error: ');
-                console.log(response);
-            }
-        );
-};
+// var setPageProperties=function ($http, $scope, pageSize) {
+//     $http
+//         .get(
+//             globalUrl +'product/count'
+//         )
+//         .then(
+//             function successCallback(response) {
+//                 console.log('setPageProperties:product count');
+//                 console.log(response.data);
+//
+//                 $scope.pageSize=pageSize;
+//                 $scope.pageCount=(response.data)/pageSize;
+//
+//                 var pages = [];
+//                 for (var i = 0; i < $scope.pageCount; i++) {
+//                     pages.push(i + 1);
+//                 }
+//
+//                 $scope.pages=pages;
+//
+//                 console.log('initialize method:pages');
+//                 console.log($scope.pages);
+//             },
+//             function errorCallback(response) {
+//                 console.log('setPageProperties:read count of product error: ');
+//                 console.log(response);
+//             }
+//         );
+// };

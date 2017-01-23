@@ -1,9 +1,8 @@
 package com.pizzashop.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.pizzashop.annotations.Price;
 import com.pizzashop.models.enums.DoughType;
+import com.pizzashop.models.enums.PizzaSize;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,27 +30,35 @@ public class Pizza extends Product  implements Serializable {
     @Price
     private BigDecimal doughPrice;
 
-    @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     @NotEmpty
     private Set<Ingredient> ingredients=new HashSet<>();
 
-    public Pizza(
-            String name,
-            String description,
-            BigDecimal price,
-            Set<Rebate> rebates,
-            DoughType doughType,
-            BigDecimal doughPrice,
-            Set<Ingredient> ingredients)
-    {
-        super(name,description,price,rebates);
-        this.doughType=doughType;
-        this.doughPrice=doughPrice;
-        this.ingredients=ingredients;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private PizzaSize size;
+
+//    public Pizza(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, DoughType doughType, BigDecimal doughPrice, Set<Ingredient> ingredients) {
+//        super(name, description, price, rebates, url);
+//        this.doughType = doughType;
+//        this.doughPrice = doughPrice;
+//        this.ingredients = ingredients;
+//
+//        this.type="pizza";
+//    }
+
+
+    public Pizza(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, DoughType doughType, BigDecimal doughPrice, Set<Ingredient> ingredients, PizzaSize size) {
+        super(name, description, price, rebates, url);
+        this.doughType = doughType;
+        this.doughPrice = doughPrice;
+        this.ingredients = ingredients;
+        this.size = size;
+        this.type="pizza";
     }
 
     public Pizza() {
-
+        this.type="pizza";
     }
 
     @Basic
@@ -90,5 +97,13 @@ public class Pizza extends Product  implements Serializable {
 
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
+    }
+
+    public PizzaSize getSize() {
+        return size;
+    }
+
+    public void setSize(PizzaSize pizzaSize) {
+        this.size = pizzaSize;
     }
 }

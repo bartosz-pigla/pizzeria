@@ -2,10 +2,7 @@ package com.pizzashop.repositories.initializers;
 
 import com.pizzashop.models.*;
 import com.pizzashop.models.builders.*;
-import com.pizzashop.models.enums.ClientType;
-import com.pizzashop.models.enums.ComplaintStatus;
-import com.pizzashop.models.enums.DoughType;
-import com.pizzashop.models.enums.ProductOrderStatus;
+import com.pizzashop.models.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,8 +76,10 @@ public class DbInitializer {
                 .addRebates(rebate)
                 .setDescription("description")
                 .setDoughType(DoughType.cienkie)
+                .setPizzaSize(PizzaSize.duża)
                 .setDoughPrice(new BigDecimal("2.43"))
                 .setIngredients(ingredients)
+                .setUrl("http://www.halopizza-luban.pl/wp-content/uploads/2016/02/pizza-1.jpg")
                 .createPizza();
     }
 
@@ -91,6 +90,7 @@ public class DbInitializer {
                 .setPrice(new BigDecimal("1.34"))
                 .addRebates(rebate)
                 .setSeasonings(seasonings)
+                .setUrl("http://www.zajadam.pl/wp-content/uploads/2014/07/sos-czosnkowy-1-654x434.jpg")
                 .createSauce();
     }
 
@@ -101,6 +101,7 @@ public class DbInitializer {
                 .setPrice(new BigDecimal("4.32"))
                 .setLiterCount("0.33")
                 .addRebates(rebate)
+                .setUrl("https://www.pepsi.pl/img/produktPepsiRegular.jpg")
                 .createDrink();
     }
 

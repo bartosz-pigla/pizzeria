@@ -20,17 +20,15 @@ public class Drink extends Product  implements Serializable {
     @NotNull    @Length(max=10)
     private String literCount;
 
-    public Drink(
-            String name,
-            String description,
-            BigDecimal price,
-            Set<Rebate> rebates,
-            String literCount){
-        super(name,description,price,rebates);
-        this.literCount=literCount;
+    public Drink(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, String literCount) {
+        super(name, description, price, rebates, url);
+        this.literCount = literCount;
+        this.type="napoj";
     }
 
-    public Drink(){}
+    public Drink(){
+                this.type="napoj";
+    }
 
     @Basic
     @Column(name = "literCount")

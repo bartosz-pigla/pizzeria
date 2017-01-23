@@ -1,8 +1,6 @@
 <div class="nav nav-stacked" id="sidebar">
     <h3>Filtr produktow</h3>
-    <form class="container-fluid"
-
-          method="post">
+    <form name="filterPanel" class="container-fluid">
 
         <div class="checkbox">
             <h4 class="glyphicon-minus" data-toggle="collapse"
@@ -12,13 +10,13 @@
                 <div role="form">
                     <div class="form-group">
                         <label for="fromPrice">Min</label> <input
-                            type="text" class="form-control" id="fromPrice"
+                            type="number" class="form-control" id="fromPrice" ng-model="filter.minPrice"
                     />
                         <p></p>
                     </div>
                     <div class="form-group">
                         <label for="toPrice">Max</label> <input
-                            type="text" class="form-control" id="toPrice"
+                            type="number" class="form-control" id="toPrice" ng-model="filter.maxPrice"
                     />
                     </div>
                 </div>
@@ -27,21 +25,157 @@
 
         <div class="checkbox">
             <h4 class="glyphicon-minus" data-toggle="collapse"
-                data-target="#productType"
-            >Rodzaj produktu</h4>
+                data-target="#rebates"
+            >Rodzaj rabatu</h4>
             <!--collapse in-->
-            <div class="container-fluid collapse in" id="displayResolutions">
-                <div class="col-md-4">
-                    <div class="checkbox">
-                        <label><input type="checkbox"/>Pizza</label>
-                        <label><input type="checkbox"/>Napoj</label>
-                        <label><input type="checkbox"/>Sos</label>
+            <div class="container-fluid collapse in" id="rebates">
+                <div class="col-md-4" >
+                    <div class="checkbox" ng-repeat="rebate in allRebates">
+                        <label >
+                            <input type="checkbox" name="rebateCheckBox" checklist-model="filter.rebates" checklist-value="rebate"/>
+                            {{rebate.name}}
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default"
+        <div class="checkbox">
+            <h4 class="glyphicon-minus" data-toggle="collapse"
+                data-target="#productTypes"
+            >Rodzaj produktu</h4>
+            <!--collapse in-->
+            <div class="container-fluid collapse in" id="productTypes" ng-init="productType='all'">
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label><input type="radio" name="productTypeRadio" ng-click="productType='all'" value="all">Wszystkie</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="productTypeRadio" ng-click="productType='pizza'" value="pizza">Pizza</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="productTypeRadio" ng-click="productType='sauce'" value="sos">Sos</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="productTypeRadio" ng-click="productType='drink'" value="napoj">Napoj</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="productType=='pizza'">
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#ingredients"
+                >Składniki</h4>
+                <!--collapse in-->
+                <div class="container-fluid collapse in" id="ingredients">
+                    <div class="col-md-4" >
+                        <div class="checkbox" >
+                            <label ng-repeat="ingredient in allIngredients">
+                                <input type="checkbox" name="ingredientCheckBox" checklist-model="filter.ingredients" checklist-value="ingredient"/>
+                                {{ingredient.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#doughPriceRange">Cena ciasta</h4>
+
+                <div class="container-fluid collapse in" id="doughPriceRange">
+                    <div role="form">
+                        <div class="form-group">
+                            <label for="fromDoughPrice">Min</label> <input
+                                type="number" class="form-control" id="fromDoughPrice" ng-model="filter.doughMinPrice"
+                        />
+                            <p></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="toDoughPrice">Max</label> <input
+                                type="number" class="form-control" id="toDoughPrice" ng-model="filter.doughMaxPrice"
+                        />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#doughTypes"
+                >Rodzaje ciasta</h4>
+                <!--collapse in-->
+                <div class="container-fluid collapse in" id="doughTypes">
+                    <div class="col-md-4">
+                        <div class="checkbox" ng-repeat="doughType in allDoughTypes">
+                            <label >
+                                <input type="checkbox" name="doughTypeCheckBox" checklist-model="filter.doughTypes" checklist-value="doughType"/>
+                                {{doughType}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#pizzaSizes"
+                >Rozmiary pizzy</h4>
+                <!--collapse in-->
+                <div class="container-fluid collapse in" id="pizzaSizes">
+                    <div class="col-md-4" >
+                        <div class="checkbox" ng-repeat="pizzaSize in allPizzaSizes">
+                            <label >
+                                <input type="checkbox" name="pizzaSizeCheckBox" checklist-model="filter.pizzaSizes" checklist-value="pizzaSize"/>
+                                {{pizzaSize}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="productType=='sauce'">
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#seasonings"
+                >Przyprawy</h4>
+                <!--collapse in-->
+                <div class="container-fluid collapse in" id="seasonings">
+                    <div class="col-md-4" >
+                        <div class="checkbox" ng-repeat="seasoning in allSeasonings">
+                            <label >
+                                <input type="checkbox" name="seasoningCheckBox" checklist-model="filter.seasonings" checklist-value="seasoning"/>
+                                {{seasoning.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="productType=='drink'">
+            <div class="checkbox">
+                <h4 class="glyphicon-minus" data-toggle="collapse"
+                    data-target="#literCounts"
+                >Liczba litrów</h4>
+                <!--collapse in-->
+                <div class="container-fluid collapse in" id="literCounts">
+                    <div class="col-md-4" ng-repeat="literCount in allLiterCounts">
+                        <div class="checkbox" >
+                            <label >
+                                <input type="checkbox" name="literCountCheckBox" checklist-model="filter.literCounts" checklist-value="literCount"/>
+                                {{literCount}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-click="filter()"
         >Filtruj</button>
         <!--  <input type="submit" th:value="#{leftSide.filterButton}" />-->
     </form>

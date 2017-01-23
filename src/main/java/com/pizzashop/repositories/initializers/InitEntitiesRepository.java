@@ -37,20 +37,10 @@ public class InitEntitiesRepository {
 
         for (Ingredient ingredient: DbInitializer.createIngredients()
              ) {
-            //System.out.println("before persist: "+cache.contains(Ingredient.class, ingredient.getIngredientId()));
-
             entityManager.persist(ingredient);
-            //cache.
-
-            //System.out.println("after persist: "+cache.contains(Ingredient.class, ingredient.getIngredientId()));
-
             entityManager.flush();
-                       ingredients.add(ingredient);
+            ingredients.add(ingredient);
         }
-
-
-
-
         for (Seasoning seasoning : DbInitializer.createSeasonings()){
             entityManager.persist(seasoning);
             seasonings.add(seasoning);
@@ -58,9 +48,6 @@ public class InitEntitiesRepository {
 
         rebate= createRebate();
         entityManager.persist(rebate);
-
-
-
 
         pizza=createPizza(ingredients,rebate);
 

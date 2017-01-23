@@ -1,5 +1,6 @@
-<h1><strong>Wprowadz informacje o pizzy</strong></h1>
+<h1><strong>Wprowadź informacje o pizzy</strong></h1>
 <div class="form-group">
+
     <label for="pizzaNameInput">Nazwa pizzy</label> <input
         type="text" name="pizzaName" class="form-control" id="pizzaNameInput" placeholder="Nazwa pizzy" ng-model="controller.selectedItem.name" ng-maxlength="30" required/>
 
@@ -42,7 +43,7 @@
         <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="mala" ng-required="!controller.selectedItem.size">Mala</label>
     </div>
     <div class="radio">
-        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="duza" ng-required="!controller.selectedItem.size">Duza</label>
+        <label><input type="radio" name="pizzaSizeRadio" ng-model="controller.selectedItem.size" value="duża" ng-required="!controller.selectedItem.size">Duza</label>
     </div>
 
     <div class="alert alert-danger fade in" ng-show="pizzaInfo.pizzaSizeRadio.$error.required && pizzaInfo.pizzaSizeRadio.$touched">

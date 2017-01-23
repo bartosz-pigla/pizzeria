@@ -20,7 +20,7 @@ public class IngredientController {
     @Autowired
     IngredientRepository ingredientRepository;
 
-    @CrossOrigin(origins = "http://localhost:63342")
+    //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Ingredient> readAll(){
         return ingredientRepository.findAll();

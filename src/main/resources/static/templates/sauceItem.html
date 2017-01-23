@@ -1,14 +1,14 @@
 <a style="color:black">
     <div class="thumbnail">
-        <img ng-src="{{item.photoUrl}}" alt="Generic placeholder thumbnail"/>
+        <img ng-src="{{item.imageUrl}}" alt="Generic placeholder thumbnail"/>
     </div>
     <div class="caption">
         <h3>{{item.name}}</h3>
         <p style="margin: 0px"><strong>Przyprawy: </strong></p>
         <ul>
-            <li ng-repeat="seasoning in item.seasonings">{{seasoning}}</li>
+            <li ng-repeat="seasoning in item.seasonings">{{seasoning.name}}</li>
         </ul>
-        <p style="margin: 0px"><strong>Cena: </strong>{{item.price}}</p>
+        <p style="margin: 0px"><strong>Cena: </strong>{{item.price}} zł</p>
         <p>
             <!-- if customer is not anonymous(logged in)-->
             <a class="btn btn-info btn-sm" ng-if="operation == 'edit'" ng-click="controller.openItem($index)">

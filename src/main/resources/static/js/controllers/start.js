@@ -31,3 +31,22 @@ var pizzaShopManagementApp = angular.module('pizzaShopManagementApp',['ngRoute',
 
             $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         });
+pizzaShopManagementApp.directive('imageUrl',function () {
+    return{
+        require:'ngModel',
+        link:function (scope, elm, attrs, ctrl) {
+            ctrl.$validators.imageUrl=function (modelValue,viewValue) {
+                var acceptedFiletypes=['jpg','png','jpeg'];
+                var lastDot=null;
+
+                if(modelValue==null || (lastDot=modelValue.lastIndexOf('.'))==-1){
+                    return false;
+                }
+
+                var fileType=modelValue.substr(lastDot+1,modelValue.length-1);
+                var accepted= acceptedFiletypes.indexOf(fileType)!=-1;
+                return accepted;
+            }
+        }
+    }
+});
