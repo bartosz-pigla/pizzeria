@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.pizzashop.repositories.initializers.DbInitializer.createPizza;
-import static com.pizzashop.repositories.initializers.DbInitializer.createRebate;
+import static com.pizzashop.repositories.initializers.DbInitializer.*;
 
 /**
  * Created by barte on 30/12/2016.
@@ -30,6 +29,8 @@ public class InitEntitiesRepository {
     public Order order;
     public Set<OrderPosition> orderPositions= new HashSet<>();
     public Complaint complaint;
+    public Sauce sauce;
+    public Drink drink;
 
     @Transactional
     public void initializeProductSubComponents(){
@@ -52,6 +53,14 @@ public class InitEntitiesRepository {
         pizza=createPizza(ingredients,rebate);
 
         entityManager.persist(pizza);
+
+        drink=createDrink(rebate);
+        entityManager.persist(drink);
+
+        sauce = createSauce(seasonings,rebate);
+        entityManager.persist(sauce);
+
+
 
         entityManager.flush();
 

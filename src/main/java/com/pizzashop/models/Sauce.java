@@ -37,7 +37,7 @@ public class Sauce extends Product implements Serializable, Nameable {
     }
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "SauceSeasonings",
             joinColumns = @JoinColumn(name = "sauceId", referencedColumnName = "productId"),
