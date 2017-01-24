@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,8 +27,13 @@ public class ProductSpecification<T> implements Specification<T> {
     public Predicate toPredicate(Root<T> product, CriteriaQuery<?> query, CriteriaBuilder cb) {
         BigDecimal minPrice = productFilter.getMinPrice();
         BigDecimal maxPrice = productFilter.getMaxPrice();
-        Set<String> names = new HashSet<>(productFilter.getNames());
-        Set<Rebate> rebates = new HashSet<>(productFilter.getRebates());
+
+        //List<String>
+        //Set<String> names = new HashSet<>(productFilter.getNames());
+        //Set<Rebate> rebates = new HashSet<>(productFilter.getRebates());
+
+        List<String> names = productFilter.getNames();
+        List<Rebate> rebates = productFilter.getRebates();
 
         Predicate predicate=cb.conjunction();
 
@@ -36,9 +42,11 @@ public class ProductSpecification<T> implements Specification<T> {
 
         predicate = names == null || names.size()==0 ? predicate : cb.and(predicate, product.get("name").in(names));
 
-        for (Rebate rebate:rebates
-                ) {
-            predicate = cb.and(predicate, cb.isMember(rebate,product.get("rebates")));
+        if(rebates!=null){
+            for (Rebate rebate:rebates
+                    ) {
+                predicate = cb.and(predicate, cb.isMember(rebate,product.get("rebates")));
+            }
         }
 
         return predicate;

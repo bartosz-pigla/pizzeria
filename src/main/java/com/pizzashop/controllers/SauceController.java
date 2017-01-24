@@ -28,7 +28,8 @@ public class SauceController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Sauce create(@RequestBody @Valid Sauce sauce){
-        return sauceRepository.save(sauce);
+        Sauce sauce1 = sauceRepository.save(sauce);
+        return sauce1;
     }
 
     @RequestMapping(value = "/read", method = RequestMethod.POST)

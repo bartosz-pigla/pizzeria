@@ -28,10 +28,13 @@ public class SauceSpecification<T> extends ProductSpecification<T> {
         if(predicate == null)
             predicate=cb.conjunction();
 
-        for (Seasoning seasoning:seasonings
-                ) {
-            predicate = cb.and(predicate, cb.isMember(seasoning,sauce.get("seasonings")));
+        if(seasonings!=null){
+            for (Seasoning seasoning:seasonings
+                    ) {
+                predicate = cb.and(predicate, cb.isMember(seasoning,sauce.get("seasonings")));
+            }
         }
+
         return predicate;
     }
 }

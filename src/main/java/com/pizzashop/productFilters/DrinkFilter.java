@@ -16,6 +16,10 @@ public class DrinkFilter extends ProductFilter {
         this.literCounts = literCounts;
     }
 
+    public DrinkFilter(){
+
+    }
+
     public List<String> getLiterCounts() {
         return literCounts;
     }

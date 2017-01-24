@@ -11,6 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,9 +29,9 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
         BigDecimal minDoughPrice = pizzaFilter.getDoughMinPrice();
         BigDecimal maxDoughPrice = pizzaFilter.getDoughMaxPrice();
 
-        Set<DoughType> doughTypes = new HashSet<>(pizzaFilter.getDoughTypes());
-        Set<PizzaSize> pizzaSizes = new HashSet<>(pizzaFilter.getPizzaSizes());
-        Set<Ingredient> ingredients = new HashSet<>(pizzaFilter.getIngredients());
+        List<DoughType> doughTypes=pizzaFilter.getDoughTypes();
+        List<PizzaSize> pizzaSizes = pizzaFilter.getPizzaSizes();
+        List<Ingredient> ingredients = pizzaFilter.getIngredients();
 
         Predicate predicate = super.toPredicate(pizza, query, cb);
 
@@ -44,11 +45,13 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
 
         predicate = pizzaSizes == null || pizzaSizes.size()==0 ? predicate : cb.and(predicate, pizza.get("size").in(pizzaSizes));
 
-
-        for (Ingredient ingredient:ingredients
-             ) {
-            predicate = cb.and(predicate, cb.isMember(ingredient,pizza.get("ingredients")));
+        if(ingredients!=null){
+            for (Ingredient ingredient:ingredients
+                    ) {
+                predicate = cb.and(predicate, cb.isMember(ingredient,pizza.get("ingredients")));
+            }
         }
+
         return predicate;
     }
 }

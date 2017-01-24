@@ -1,7 +1,6 @@
 <div class="nav nav-stacked" id="sidebar">
     <h3>Filtr produktow</h3>
     <form name="filterPanel" class="container-fluid">
-
         <div class="checkbox">
             <h4 class="glyphicon-minus" data-toggle="collapse"
                 data-target="#priceRange">Cena</h4>
@@ -45,19 +44,19 @@
                 data-target="#productTypes"
             >Rodzaj produktu</h4>
             <!--collapse in-->
-            <div class="container-fluid collapse in" id="productTypes" ng-init="productType='all'">
+            <div class="container-fluid collapse in" id="productTypes">
                 <div class="col-md-4">
                     <div class="radio">
-                        <label><input type="radio" name="productTypeRadio" ng-click="productType='all'" value="all">Wszystkie</label>
+                        <label><input type="radio" name="productTypeRadio" ng-click="changeProductType('product')" value="all">Wszystkie</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="productTypeRadio" ng-click="productType='pizza'" value="pizza">Pizza</label>
+                        <label><input type="radio" name="productTypeRadio" ng-click="changeProductType('pizza')" value="pizza">Pizza</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="productTypeRadio" ng-click="productType='sauce'" value="sos">Sos</label>
+                        <label><input type="radio" name="productTypeRadio" ng-click="changeProductType('sauce')" value="sos">Sos</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="productTypeRadio" ng-click="productType='drink'" value="napoj">Napoj</label>
+                        <label><input type="radio" name="productTypeRadio" ng-click="changeProductType('drink')" value="napoj">Napoj</label>
                     </div>
                 </div>
             </div>
@@ -175,7 +174,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default" ng-click="filter()"
+        <button type="submit" class="btn btn-default" ng-click="getCollection(1)"
         >Filtruj</button>
         <!--  <input type="submit" th:value="#{leftSide.filterButton}" />-->
     </form>

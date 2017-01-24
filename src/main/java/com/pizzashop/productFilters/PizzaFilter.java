@@ -29,6 +29,10 @@ public class PizzaFilter extends ProductFilter {
         this.pizzaSizes = pizzaSizes;
     }
 
+    public PizzaFilter(){
+
+    }
+
     //    public PizzaFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Ingredient> ingredients, BigDecimal doughMinPrice, BigDecimal doughMaxPrice, List<DoughType> doughTypes) {
 //        super(rebates, names, minPrice, maxPrice);
 //        this.ingredients = ingredients;

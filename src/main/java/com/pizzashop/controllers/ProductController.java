@@ -1,9 +1,16 @@
 package com.pizzashop.controllers;
 
+import com.pizzashop.models.Pizza;
 import com.pizzashop.models.Product;
+import com.pizzashop.productFilters.PizzaFilter;
+import com.pizzashop.productFilters.ProductFilter;
 import com.pizzashop.repositories.ProductBaseRepository;
+import com.pizzashop.repositories.ProductRepository;
+import com.pizzashop.specifications.PizzaSpecification;
+import com.pizzashop.specifications.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +22,7 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
-    ProductBaseRepository productRepository;
+    ProductRepository productRepository;
 
     //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -37,6 +44,20 @@ public class ProductController {
 
         Product p = (Product)productRepository.findOne(productId);
         return p;
+    }
+
+    @RequestMapping(value = "/read", method = RequestMethod.POST)
+    public List<Product> read(
+            @RequestBody ProductFilter productFilter,
+            @RequestParam(value = "pageSize", required = true) Integer pageSize,
+            @RequestParam(value = "pageNumber", required = true) Integer pageNumber
+    ) {
+        Specification<Product> productSpecification=new ProductSpecification<>(productFilter);
+        List<Product> products=
+                productRepository
+                        .findAll(productSpecification, new PageRequest((pageNumber == null) ? 0 : pageNumber - 1, pageSize)).getContent();
+
+        return products;
     }
 
     @RequestMapping(value = "/delete/{productId}", method = RequestMethod.DELETE)

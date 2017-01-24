@@ -7,6 +7,8 @@ angular.module('pizzaShopManagementApp')
             self.failed = false;
 
             $scope.operation = 'edit';
+            $scope.productType="product";
+
             $scope.toggleDialog = toggleDialog;
 
             //initializeCheckBoxes(self, $http);
@@ -14,12 +16,26 @@ angular.module('pizzaShopManagementApp')
             $scope.pageNumber=1;
             $scope.selectedIdx=-1;
 
+            $scope.filter={};
+            //$scope.productType='product';
+
             $scope.getCollection = function (pageNumber) {
+                console.log("getCollection:productType");
+                console.log($scope.productType);
+
                 $scope.pageNumber=pageNumber;
                 $scope.collection=setProducts($http, $scope,3);
 
                 console.log('getCollection method:collection');
                 console.log($scope.collection);
+            };
+
+            $scope.changeProductType=function(productType){
+
+                $scope.productType=productType;
+
+                console.log('--------------');
+                console.log($scope.productType);
             };
 
             $scope.openItem= function (itemIndex) {
