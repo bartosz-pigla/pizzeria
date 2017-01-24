@@ -25,6 +25,7 @@ public class ProductSpecification<T> implements Specification<T> {
 
     @Override
     public Predicate toPredicate(Root<T> product, CriteriaQuery<?> query, CriteriaBuilder cb) {
+
         BigDecimal minPrice = productFilter.getMinPrice();
         BigDecimal maxPrice = productFilter.getMaxPrice();
 

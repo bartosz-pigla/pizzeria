@@ -25,4 +25,7 @@ public interface ProductRepository extends ProductBaseRepository<Product> {
     @QueryHints(value = { @QueryHint(name = "org.hibernate.cacheable", value = "true")})
     Page<Product> findAll(Specification<Product> specification, Pageable pageable);
 
+
+    Long count(Specification<Product> specification);
+
 }

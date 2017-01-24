@@ -33,7 +33,6 @@ public class PizzaController {
         return pizzaRepository.save(pizza);
     }
 
-
     @RequestMapping(value = "/read", method = RequestMethod.POST)
     public List<Pizza> read(
             @RequestBody PizzaFilter pizzaFilter,
@@ -48,4 +47,30 @@ public class PizzaController {
 
         return pizzas;
     }
+
+    @RequestMapping(value = "/count", method = RequestMethod.POST)
+    public Long count(
+            @RequestBody PizzaFilter pizzaFilter
+    ) {
+        Specification<Pizza> pizzaSpecification=new PizzaSpecification<>(pizzaFilter);
+        return
+                pizzaRepository
+                        .count(pizzaSpecification);
+    }
+
+//
+//    @RequestMapping(value = "/read", method = RequestMethod.POST)
+//    public List<Pizza> read(
+//            @RequestBody PizzaFilter pizzaFilter,
+//            @RequestParam(value = "pageSize", required = true) Integer pageSize,
+//            @RequestParam(value = "pageNumber", required = true) Integer pageNumber
+//    ) {
+//        Specification<Pizza> pizzaSpecification=new PizzaSpecification<>(pizzaFilter);
+//        List<Pizza> pizzas=
+//                pizzaRepository
+//                        .findAll(pizzaSpecification, new PageRequest((pageNumber == null) ? 0 : pageNumber - 1, pageSize))
+//                        .getContent();
+//
+//        return pizzas;
+//    }
 }

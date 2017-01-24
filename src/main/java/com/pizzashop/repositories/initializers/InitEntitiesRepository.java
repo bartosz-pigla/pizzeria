@@ -54,6 +54,8 @@ public class InitEntitiesRepository {
 
         entityManager.persist(pizza);
 
+        entityManager.persist(createPizza(ingredients,rebate));
+
         drink=createDrink(rebate);
         entityManager.persist(drink);
 

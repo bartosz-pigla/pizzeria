@@ -1,9 +1,12 @@
 package com.pizzashop.controllers;
 
 import com.pizzashop.models.Drink;
+import com.pizzashop.models.Pizza;
 import com.pizzashop.productFilters.DrinkFilter;
+import com.pizzashop.productFilters.PizzaFilter;
 import com.pizzashop.repositories.DrinkRepository;
 import com.pizzashop.specifications.DrinkSpecification;
+import com.pizzashop.specifications.PizzaSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -17,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/drink")
+@CrossOrigin(origins = "http://localhost:63342")
 public class DrinkController {
     @Autowired
     DrinkRepository drinkRepository;
@@ -46,5 +50,15 @@ public class DrinkController {
 
 
         return drinks;
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.POST)
+    public Long count(
+            @RequestBody DrinkFilter drinkFilter
+    ) {
+        Specification<Drink> drinkSpecification=new DrinkSpecification<>(drinkFilter);
+        return
+                drinkRepository
+                        .count(drinkSpecification);
     }
 }

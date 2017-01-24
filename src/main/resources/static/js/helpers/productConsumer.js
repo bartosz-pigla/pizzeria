@@ -16,17 +16,7 @@ var setProducts=function ($http, $scope, pageSize) {
 
         $scope.collection=response.data;
 
-        $scope.pageCount=($scope.collection.length)/pageSize;
 
-        var pages = [];
-        for (var i = 0; i < $scope.pageCount; i++) {
-            pages.push(i + 1);
-        }
-
-        $scope.pages=pages;
-
-        console.log('setProducts:pages');
-        console.log($scope.pages);
     };
 
     var errorCallback=function (response) {

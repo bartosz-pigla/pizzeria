@@ -20,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:63342")
 public class ProductController {
     @Autowired
     ProductRepository productRepository;
@@ -42,8 +43,18 @@ public class ProductController {
     @RequestMapping(value = "/read/{productId}", method = RequestMethod.GET)
     public Product read(@PathVariable Integer productId) {
 
-        Product p = (Product)productRepository.findOne(productId);
+        Product p = productRepository.findOne(productId);
         return p;
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.POST)
+    public Long count(
+            @RequestBody ProductFilter productFilter
+    ) {
+        Specification<Product> productSpecification=new ProductSpecification<>(productFilter);
+        return
+                productRepository
+                        .count(productSpecification);
     }
 
     @RequestMapping(value = "/read", method = RequestMethod.POST)
@@ -59,6 +70,20 @@ public class ProductController {
 
         return products;
     }
+
+//    @RequestMapping(value = "/read", method = RequestMethod.POST)
+//    public List<Product> read(
+//            @RequestBody ProductFilter productFilter,
+//            @RequestParam(value = "pageSize", required = true) Integer pageSize,
+//            @RequestParam(value = "pageNumber", required = true) Integer pageNumber
+//    ) {
+//        Specification<Product> productSpecification=new ProductSpecification<>(productFilter);
+//        List<Product> products=
+//                productRepository
+//                        .findAll(productSpecification, new PageRequest((pageNumber == null) ? 0 : pageNumber - 1, pageSize)).getContent();
+//
+//        return products;
+//    }
 
     @RequestMapping(value = "/delete/{productId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Integer productId) {

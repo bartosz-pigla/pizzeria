@@ -9,7 +9,7 @@
             <!-- dialog buttons -->
             <div class="modal-footer">
                 <button type="button" class="btn" data-dismiss="modal">Nie</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteItem()">Tak
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteProduct()">Tak
                 </button>
             </div>
         </div>
@@ -30,8 +30,8 @@
         <!--powodzeniem!</strong>-->
         <!--Pomyslnie usunieto produkt z menu-->
         <!--</div>-->
-        <div class="alert alert-success fade in" ng-show="deleted">
-            <a class="close" ng-click="deleted=false">&times;</a> <strong>Operacja zakonczona
+        <div class="alert alert-success fade in" ng-show="controller.deleted">
+            <a href="" class="close" ng-click="deleted=false">&times;</a> <strong>Operacja zakonczona
             powodzeniem!</strong>
             Pomyslnie usunieto produkt z menu
         </div>
@@ -44,8 +44,9 @@
                 <div ng-include="'templates/drinkItem.html'" ng-if="item.type == 'napoj'"></div>
             </div>
 
-            <div class="container-fluid" ng-include="'templates/paginationPanel.html'"></div>
+
         </div>
+        <div class="container-fluid" ng-include="'templates/paginationPanel.html'"></div>
         <!--/right-->
     </div>
     <!--/row-->

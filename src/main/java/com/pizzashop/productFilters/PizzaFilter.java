@@ -30,7 +30,8 @@ public class PizzaFilter extends ProductFilter {
     }
 
     public PizzaFilter(){
-
+        this.doughMinPrice=new BigDecimal("0.0");
+        this.doughMaxPrice=new BigDecimal("0.0");
     }
 
     //    public PizzaFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Ingredient> ingredients, BigDecimal doughMinPrice, BigDecimal doughMaxPrice, List<DoughType> doughTypes) {

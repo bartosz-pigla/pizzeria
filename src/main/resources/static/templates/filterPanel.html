@@ -162,8 +162,8 @@
                 >Liczba litrów</h4>
                 <!--collapse in-->
                 <div class="container-fluid collapse in" id="literCounts">
-                    <div class="col-md-4" ng-repeat="literCount in allLiterCounts">
-                        <div class="checkbox" >
+                    <div class="col-md-4">
+                        <div class="checkbox"  ng-repeat="literCount in allLiterCounts">
                             <label >
                                 <input type="checkbox" name="literCountCheckBox" checklist-model="filter.literCounts" checklist-value="literCount"/>
                                 {{literCount}}

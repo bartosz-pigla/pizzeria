@@ -26,6 +26,8 @@ public class ProductFilter {
     }
 
     public ProductFilter() {
+        this.minPrice=new BigDecimal("0.0");
+        this.maxPrice=new BigDecimal("0.0");
     }
 
     public List<Rebate> getRebates() {

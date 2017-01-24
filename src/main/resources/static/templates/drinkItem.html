@@ -8,7 +8,7 @@
         <p style="margin: 0px"><strong>Cena: </strong>{{item.price}} zł</p>
         <p>
             <!-- if customer is not anonymous(logged in)-->
-            <a class="btn btn-info btn-sm" ng-if="operation == 'edit'" ng-click="controller.openItem($index)">
+            <a class="btn btn-info btn-sm" ng-if="operation == 'edit'" ng-click="openItem($index)">
                 <span>Wybierz do edycji</span>
             </a>
 

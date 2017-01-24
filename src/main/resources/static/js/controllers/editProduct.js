@@ -9,7 +9,7 @@ angular.module('pizzaShopManagementApp')
             $scope.operation = 'edit';
             $scope.productType="product";
 
-            $scope.toggleDialog = toggleDialog;
+            $scope.toggleDialog = toggleDialogView;
 
             //initializeCheckBoxes(self, $http);
 
@@ -20,6 +20,31 @@ angular.module('pizzaShopManagementApp')
             //$scope.productType='product';
 
             $scope.getCollection = function (pageNumber) {
+
+                $http
+                    .post(
+                        globalUrl + $scope.productType + '/count',
+                        $scope.filter
+                    )
+                    .then(
+                        function (response) {
+                            $scope.pageCount=(response.data)/3;
+
+                            var pages = [];
+                            for (var i = 0; i < $scope.pageCount; i++) {
+                                pages.push(i + 1);
+                            }
+
+                            $scope.pages=pages;
+
+                            console.log('setProducts:pages');
+                            console.log($scope.pages);
+                        },
+                        function (response) {
+
+                        }
+                    );
+
                 console.log("getCollection:productType");
                 console.log($scope.productType);
 

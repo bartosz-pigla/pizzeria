@@ -17,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sauce")
+@CrossOrigin(origins = "http://localhost:63342")
 public class SauceController {
     @Autowired
     SauceRepository sauceRepository;
@@ -46,5 +47,15 @@ public class SauceController {
 
 
         return sauces;
+    }
+
+    @RequestMapping(value = "/count", method = RequestMethod.POST)
+    public Long count(
+            @RequestBody SauceFilter sauceFilter
+    ) {
+        Specification<Sauce> sauceSpecification=new SauceSpecification<>(sauceFilter);
+        return
+                sauceRepository
+                        .count(sauceSpecification);
     }
 }

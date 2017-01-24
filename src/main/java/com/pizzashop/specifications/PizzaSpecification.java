@@ -41,6 +41,8 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
         if (minDoughPrice != null && maxDoughPrice != null)
             predicate = minDoughPrice.equals(maxDoughPrice) ? predicate : cb.and(predicate, cb.between(pizza.<BigDecimal>get("doughPrice"), minDoughPrice, maxDoughPrice));
 
+        //pizza.get("doughType").
+
         predicate = doughTypes == null || doughTypes.size()==0 ? predicate : cb.and(predicate, pizza.get("doughType").in(doughTypes));
 
         predicate = pizzaSizes == null || pizzaSizes.size()==0 ? predicate : cb.and(predicate, pizza.get("size").in(pizzaSizes));
@@ -54,4 +56,6 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
 
         return predicate;
     }
+
+
 }
