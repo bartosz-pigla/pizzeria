@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class OrderPositionBuilder {
     private Integer count;
-    private BigDecimal price;
+    private Double price;
     private Order order;
     private Product product;
     private Rebate rebate;
@@ -19,7 +19,7 @@ public class OrderPositionBuilder {
         return this;
     }
 
-    public OrderPositionBuilder setPrice(BigDecimal price) {
+    public OrderPositionBuilder setPrice(Double price) {
         this.price = price;
         return this;
     }

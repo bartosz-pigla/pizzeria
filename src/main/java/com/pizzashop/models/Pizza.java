@@ -28,7 +28,7 @@ public class Pizza extends Product  implements Serializable {
 
     @NotNull
     @Price
-    private BigDecimal doughPrice;
+    private Double doughPrice;
 
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     @NotEmpty
@@ -48,8 +48,8 @@ public class Pizza extends Product  implements Serializable {
 //    }
 
 
-    public Pizza(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, DoughType doughType, BigDecimal doughPrice, Set<Ingredient> ingredients, PizzaSize size) {
-        super(name, description, price, rebates, url);
+    public Pizza(String name, String description, Double price, Set<Rebate> rebates, String url, DoughType doughType, Double doughPrice, Set<Ingredient> ingredients, PizzaSize size, boolean archival) {
+        super(name, description, price, rebates, url,archival);
         this.doughType = doughType;
         this.doughPrice = doughPrice;
         this.ingredients = ingredients;
@@ -73,11 +73,11 @@ public class Pizza extends Product  implements Serializable {
 
     @Basic
     @Column(name = "doughPrice")
-    public BigDecimal getDoughPrice() {
+    public Double getDoughPrice() {
         return doughPrice;
     }
 
-    public void setDoughPrice(BigDecimal doughPrice) {
+    public void setDoughPrice(Double doughPrice) {
         this.doughPrice = doughPrice;
     }
 

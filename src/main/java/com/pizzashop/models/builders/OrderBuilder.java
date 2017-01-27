@@ -15,7 +15,7 @@ public class OrderBuilder {
     private Date orderDate;
     private String address;
     private Date receiptDate;
-    private BigDecimal price;
+    private Double price;
     private Client client;
     private ProductOrderStatus productOrderStatus;
     private Set<OrderPosition> orderPositions;
@@ -35,7 +35,7 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder setPrice(BigDecimal price) {
+    public OrderBuilder setPrice(Double price) {
         this.price = price;
         return this;
     }

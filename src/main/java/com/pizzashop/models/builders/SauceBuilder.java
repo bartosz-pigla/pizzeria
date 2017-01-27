@@ -11,10 +11,11 @@ import java.util.Set;
 public class SauceBuilder {
     private String name;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private Set<Rebate> rebates=new HashSet<>();
     private String url;
     private Set<Seasoning> seasonings=new HashSet<>();
+    private boolean archival;
 
     public SauceBuilder setName(String name) {
         this.name = name;
@@ -26,7 +27,7 @@ public class SauceBuilder {
         return this;
     }
 
-    public SauceBuilder setPrice(BigDecimal price) {
+    public SauceBuilder setPrice(Double price) {
         this.price = price;
         return this;
     }
@@ -46,8 +47,13 @@ public class SauceBuilder {
         return this;
     }
 
+    public SauceBuilder setArchival(boolean archival){
+        this.archival=archival;
+        return this;
+    }
+
     public Sauce createSauce() {
-        return new Sauce(name, description, price, rebates, url, seasonings);
+        return new Sauce(name, description, price, rebates, url, seasonings,archival);
     }
 
     public SauceBuilder addRebates(Rebate... rebates) {

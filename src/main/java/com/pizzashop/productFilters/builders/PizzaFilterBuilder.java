@@ -6,17 +6,16 @@ import com.pizzashop.models.enums.DoughType;
 import com.pizzashop.models.enums.PizzaSize;
 import com.pizzashop.productFilters.PizzaFilter;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class PizzaFilterBuilder {
     private List<Rebate> rebates;
     private List<String> names;
-    private BigDecimal minPrice;
-    private BigDecimal maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
     private List<Ingredient> ingredients;
-    private BigDecimal doughMinPrice;
-    private BigDecimal doughMaxPrice;
+    private Double doughMinPrice;
+    private Double doughMaxPrice;
     private List<DoughType> doughTypes;
     private List<PizzaSize> pizzaSizes;
 
@@ -30,12 +29,12 @@ public class PizzaFilterBuilder {
         return this;
     }
 
-    public PizzaFilterBuilder setMinPrice(BigDecimal minPrice) {
+    public PizzaFilterBuilder setMinPrice(Double minPrice) {
         this.minPrice = minPrice;
         return this;
     }
 
-    public PizzaFilterBuilder setMaxPrice(BigDecimal maxPrice) {
+    public PizzaFilterBuilder setMaxPrice(Double maxPrice) {
         this.maxPrice = maxPrice;
         return this;
     }
@@ -45,12 +44,12 @@ public class PizzaFilterBuilder {
         return this;
     }
 
-    public PizzaFilterBuilder setDoughMinPrice(BigDecimal doughMinPrice) {
+    public PizzaFilterBuilder setDoughMinPrice(Double doughMinPrice) {
         this.doughMinPrice = doughMinPrice;
         return this;
     }
 
-    public PizzaFilterBuilder setDoughMaxPrice(BigDecimal doughMaxPrice) {
+    public PizzaFilterBuilder setDoughMaxPrice(Double doughMaxPrice) {
         this.doughMaxPrice = doughMaxPrice;
         return this;
     }

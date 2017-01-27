@@ -62,7 +62,28 @@ public class InitEntitiesRepository {
         sauce = createSauce(seasonings,rebate);
         entityManager.persist(sauce);
 
+        client=createClient();
 
+        entityManager.persist(client);
+
+        order=createOrder(client);
+
+        orderPositions=createOrderPositions(order,pizza,rebate);
+        order.setOrderPositions(orderPositions);
+
+        //entityManager.persist(order);
+
+
+//        for (OrderPosition orderPosition:orderPositions
+//             ) {
+//            entityManager.persist(orderPosition);
+//        }
+
+        entityManager.persist(order);
+
+        complaint=createComplaint(order);
+
+        entityManager.persist(complaint);
 
         entityManager.flush();
 

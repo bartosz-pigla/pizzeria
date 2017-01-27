@@ -10,7 +10,7 @@
 
     <div class="col-md-9" ng-if="selectedIdx == -1">
         <div class="alert alert-success fade in" ng-if="controller.edited == true">
-            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakończona
             powodzeniem!</strong>
             Pomyslnie zmodyfikowano produkt do menu
         </div>
@@ -36,13 +36,13 @@
         <button type="button" class="btn btn-default" ng-click="openItem(-1)">Powrot</button>
 
         <div class="alert alert-danger fade in" ng-show="controller.failed == true">
-            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakończona
             niepowodzeniem!</strong>
             Nie zmieniono produktu w menu
         </div>
 
         <div class="alert alert-danger fade in" ng-show="controller.serverValidationError !== undefined">
-            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakonczona
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakończona
             niepowodzeniem!</strong>
             {{controller.serverValidationError}}
         </div>

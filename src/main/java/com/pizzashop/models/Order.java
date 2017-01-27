@@ -30,7 +30,7 @@ public class Order  implements Serializable {
 
     @NotNull
     @Price
-    private BigDecimal price;
+    private Double price;
     @NotNull
     private Client client;
 
@@ -41,7 +41,7 @@ public class Order  implements Serializable {
     @NotEmpty
     private Set<OrderPosition> orderPositions=new HashSet<>();
 
-    public Order(Date orderDate, String address, Date receiptDate, BigDecimal price, Client client, ProductOrderStatus productOrderStatus, Set<OrderPosition> orderPositions) {
+    public Order(Date orderDate, String address, Date receiptDate, Double price, Client client, ProductOrderStatus productOrderStatus, Set<OrderPosition> orderPositions) {
         this.orderDate = orderDate;
         this.address = address;
         this.receiptDate = receiptDate;
@@ -96,15 +96,15 @@ public class Order  implements Serializable {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     public Set<OrderPosition> getOrderPositions() {
         return orderPositions;
     }
@@ -113,7 +113,7 @@ public class Order  implements Serializable {
         this.orderPositions = orderPositionsList;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Client_clientId", referencedColumnName = "clientId", nullable = false)
     public Client getClient() {
         return client;
@@ -141,13 +141,36 @@ public class Order  implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Order order = (Order) o;
-        return Objects.equals(client, order.client) &&
-                Objects.equals(orderPositions, order.orderPositions);
+
+        if (orderDate != null ? !orderDate.equals(order.orderDate) : order.orderDate != null) return false;
+        if (receiptDate != null ? !receiptDate.equals(order.receiptDate) : order.receiptDate != null) return false;
+        if (address != null ? !address.equals(order.address) : order.address != null) return false;
+        return price != null ? price.equals(order.price) : order.price == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(client, orderPositions);
+        int result = orderDate != null ? orderDate.hashCode() : 0;
+        result = 31 * result + (receiptDate != null ? receiptDate.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
     }
+
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Order order = (Order) o;
+//        return Objects.equals(client, order.client) &&
+//                Objects.equals(orderPositions, order.orderPositions);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(client, orderPositions);
+//    }
+
 }

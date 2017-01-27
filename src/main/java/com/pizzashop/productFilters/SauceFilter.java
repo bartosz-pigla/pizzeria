@@ -12,7 +12,7 @@ import java.util.List;
 public class SauceFilter extends ProductFilter {
     protected List<Seasoning> seasonings;
 
-    public SauceFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Seasoning> seasonings) {
+    public SauceFilter(List<Rebate> rebates, List<String> names, Double minPrice, Double maxPrice, List<Seasoning> seasonings) {
         super(rebates, names, minPrice, maxPrice);
         this.seasonings = seasonings;
     }

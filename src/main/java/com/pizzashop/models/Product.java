@@ -33,7 +33,7 @@ public abstract class Product implements Serializable, Nameable {
     private String description;
     @NotNull
     @Price
-    private BigDecimal price;
+    private Double price;
     @NotEmpty
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private Set<Rebate> rebates = new HashSet<>();
@@ -45,15 +45,18 @@ public abstract class Product implements Serializable, Nameable {
     @Transient
     protected String type;
 
+    private boolean archival;
+
     public Product() {
     }
 
-    public Product(String name, String description, BigDecimal price, Set<Rebate> rebates, String url) {
+    public Product(String name, String description, Double price, Set<Rebate> rebates, String url, boolean archival) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.rebates = rebates;
         this.imageUrl = url;
+        this.archival=archival;
     }
 
     //    public Product(
@@ -101,11 +104,11 @@ public abstract class Product implements Serializable, Nameable {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -135,12 +138,24 @@ public abstract class Product implements Serializable, Nameable {
         this.type = type;
     }
 
+    @Basic
+    @Column(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }
 
     public void setImageUrl(String url) {
         this.imageUrl = url;
+    }
+
+    @Basic
+    @Column(name = "archival")
+    public boolean getArchival() {
+        return archival;
+    }
+
+    public void setArchival(boolean archival) {
+        this.archival = archival;
     }
 
     @Override

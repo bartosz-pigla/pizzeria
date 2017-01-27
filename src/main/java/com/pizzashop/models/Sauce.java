@@ -26,8 +26,8 @@ public class Sauce extends Product implements Serializable, Nameable {
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     private Set<Seasoning> seasonings=new HashSet<>();
 
-    public Sauce(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, Set<Seasoning> seasonings) {
-        super(name, description, price, rebates, url);
+    public Sauce(String name, String description, Double price, Set<Rebate> rebates, String url, Set<Seasoning> seasonings, boolean archival) {
+        super(name, description, price, rebates, url,archival);
         this.seasonings = seasonings;
         this.type="sos";
     }

@@ -3,7 +3,7 @@ angular.module('pizzaShopManagementApp')
         function ($scope,$http) {
             var self = this;
 
-            self.edited = false;
+            self.deleted = false;
             self.failed = false;
 
             $scope.operation = 'delete';

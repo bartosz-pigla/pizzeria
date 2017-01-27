@@ -11,7 +11,7 @@ import java.util.List;
 public class DrinkFilter extends ProductFilter {
     protected List<String> literCounts;
 
-    public DrinkFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<String> literCounts) {
+    public DrinkFilter(List<Rebate> rebates, List<String> names, Double minPrice, Double maxPrice, List<String> literCounts) {
         super(rebates, names, minPrice, maxPrice);
         this.literCounts = literCounts;
     }

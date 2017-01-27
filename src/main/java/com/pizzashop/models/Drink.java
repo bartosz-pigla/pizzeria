@@ -20,8 +20,8 @@ public class Drink extends Product  implements Serializable {
     @NotNull    @Length(max=10)
     private String literCount;
 
-    public Drink(String name, String description, BigDecimal price, Set<Rebate> rebates, String url, String literCount) {
-        super(name, description, price, rebates, url);
+    public Drink(String name, String description, Double price, Set<Rebate> rebates, String url, String literCount, boolean archival) {
+        super(name, description, price, rebates, url,archival);
         this.literCount = literCount;
         this.type="napoj";
     }

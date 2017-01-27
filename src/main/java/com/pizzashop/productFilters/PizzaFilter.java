@@ -14,13 +14,13 @@ import java.util.List;
 public class PizzaFilter extends ProductFilter {
     protected List<Ingredient> ingredients;
 
-    protected BigDecimal doughMinPrice, doughMaxPrice;
+    protected Double doughMinPrice, doughMaxPrice;
 
     protected List<DoughType> doughTypes;
 
     protected List<PizzaSize> pizzaSizes;
 
-    public PizzaFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Ingredient> ingredients, BigDecimal doughMinPrice, BigDecimal doughMaxPrice, List<DoughType> doughTypes, List<PizzaSize> pizzaSizes) {
+    public PizzaFilter(List<Rebate> rebates, List<String> names, Double minPrice, Double maxPrice, List<Ingredient> ingredients, Double doughMinPrice, Double doughMaxPrice, List<DoughType> doughTypes, List<PizzaSize> pizzaSizes) {
         super(rebates, names, minPrice, maxPrice);
         this.ingredients = ingredients;
         this.doughMinPrice = doughMinPrice;
@@ -30,8 +30,8 @@ public class PizzaFilter extends ProductFilter {
     }
 
     public PizzaFilter(){
-        this.doughMinPrice=new BigDecimal("0.0");
-        this.doughMaxPrice=new BigDecimal("0.0");
+        this.doughMinPrice=new Double("0.0");
+        this.doughMaxPrice=new Double("0.0");
     }
 
     //    public PizzaFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Ingredient> ingredients, BigDecimal doughMinPrice, BigDecimal doughMaxPrice, List<DoughType> doughTypes) {
@@ -50,19 +50,19 @@ public class PizzaFilter extends ProductFilter {
         this.ingredients = ingredients;
     }
 
-    public BigDecimal getDoughMinPrice() {
+    public Double getDoughMinPrice() {
         return doughMinPrice;
     }
 
-    public void setDoughMinPrice(BigDecimal doughMinPrice) {
+    public void setDoughMinPrice(Double doughMinPrice) {
         this.doughMinPrice = doughMinPrice;
     }
 
-    public BigDecimal getDoughMaxPrice() {
+    public Double getDoughMaxPrice() {
         return doughMaxPrice;
     }
 
-    public void setDoughMaxPrice(BigDecimal doughMaxPrice) {
+    public void setDoughMaxPrice(Double doughMaxPrice) {
         this.doughMaxPrice = doughMaxPrice;
     }
 

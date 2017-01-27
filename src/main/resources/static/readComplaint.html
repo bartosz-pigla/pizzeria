@@ -27,12 +27,12 @@
                 <td>{{complaint.order.client.eMail}}</td>
                 <td>{{complaint.order.client.firstName}}</td>
                 <td>{{complaint.order.client.surname}}</td>
-                <td>{{complaint.order.price}}</td>
+                <td>{{complaint.order.price}} zł</td>
                 <td>{{complaint.order.orderDate}}</td>
                 <td>{{complaint.submitDate}}</td>
                 <td></td>
                 <td>
-                    <button type="button" class="btn btn-default" ng-click="controller.openItem($index)">Szczegoly</button>
+                    <button type="button" class="btn btn-default" ng-click="openItem($index)">Szczegóły</button>
                 </td>
             </tr>
             </tbody>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="col-md-9" ng-if="selectedIdx != -1">
-        <button type="button" class="btn btn-default" ng-click="controller.openItem(-1)">Powrot</button>
+        <button type="button" class="btn btn-default" ng-click="openItem(-1)">Powrot</button>
 
         <h1>Reklamacja</h1>
 
@@ -82,7 +82,7 @@
             <tbody>
             <tr>
                 <td>Cena zamowienia:</td>
-                <td>{{selectedItem.order.price}}</td>
+                <td>{{selectedItem.order.price}} zł</td>
             </tr>
             <tr>
                 <td>Data zlozenia zamowienia</td>
@@ -104,7 +104,7 @@
             <th>Liczba</th>
             </thead>
             <tbody>
-            <tr ng-repeat="position in selectedItem.order.orderPositionsList">
+            <tr ng-repeat="position in selectedItem.order.orderPositions">
                 <td>{{position.product.name}}</td>
                 <td>{{position.price}} zl</td>
                 <td>{{position.count}}</td>
@@ -112,7 +112,7 @@
             </tbody>
         </table>
 
-        <button type="button" class="btn btn-default" ng-click="controller.controller.openItem(-1)">Powrot</button>
+        <button type="button" class="btn btn-default" ng-click="openItem(-1)">Powrot</button>
     </div>
     <!--</table>-->
     <!--/right-->

@@ -71,7 +71,7 @@ public class Complaint  implements Serializable {
     }
 
 
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productOrderId")
     public Order getOrder() {
         return order;

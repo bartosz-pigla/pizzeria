@@ -3,14 +3,13 @@ package com.pizzashop.productFilters.builders;
 import com.pizzashop.models.Rebate;
 import com.pizzashop.productFilters.DrinkFilter;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class DrinkFilterBuilder {
     private List<Rebate> rebates;
     private List<String> names;
-    private BigDecimal minPrice;
-    private BigDecimal maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
     private List<String> literCounts;
 
     public DrinkFilterBuilder setRebates(List<Rebate> rebates) {
@@ -23,12 +22,12 @@ public class DrinkFilterBuilder {
         return this;
     }
 
-    public DrinkFilterBuilder setMinPrice(BigDecimal minPrice) {
+    public DrinkFilterBuilder setMinPrice(Double minPrice) {
         this.minPrice = minPrice;
         return this;
     }
 
-    public DrinkFilterBuilder setMaxPrice(BigDecimal maxPrice) {
+    public DrinkFilterBuilder setMaxPrice(Double maxPrice) {
         this.maxPrice = maxPrice;
         return this;
     }

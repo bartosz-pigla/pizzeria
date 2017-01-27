@@ -4,14 +4,13 @@ import com.pizzashop.models.Rebate;
 import com.pizzashop.models.Seasoning;
 import com.pizzashop.productFilters.SauceFilter;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class SauceFilterBuilder {
     private List<Rebate> rebates;
     private List<String> names;
-    private BigDecimal minPrice;
-    private BigDecimal maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
     private List<Seasoning> seasonings;
 
     public SauceFilterBuilder setRebates(List<Rebate> rebates) {
@@ -24,12 +23,12 @@ public class SauceFilterBuilder {
         return this;
     }
 
-    public SauceFilterBuilder setMinPrice(BigDecimal minPrice) {
+    public SauceFilterBuilder setMinPrice(Double minPrice) {
         this.minPrice = minPrice;
         return this;
     }
 
-    public SauceFilterBuilder setMaxPrice(BigDecimal maxPrice) {
+    public SauceFilterBuilder setMaxPrice(Double maxPrice) {
         this.maxPrice = maxPrice;
         return this;
     }

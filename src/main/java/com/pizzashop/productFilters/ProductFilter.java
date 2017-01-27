@@ -16,9 +16,9 @@ public class ProductFilter {
     protected List<String> names;
 
 
-    protected BigDecimal minPrice, maxPrice;
+    protected Double minPrice, maxPrice;
 
-    public ProductFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice) {
+    public ProductFilter(List<Rebate> rebates, List<String> names, Double minPrice, Double maxPrice) {
         this.rebates = rebates;
         this.names = names;
         this.minPrice = minPrice;
@@ -26,8 +26,8 @@ public class ProductFilter {
     }
 
     public ProductFilter() {
-        this.minPrice=new BigDecimal("0.0");
-        this.maxPrice=new BigDecimal("0.0");
+        this.minPrice=new Double("0.0");
+        this.maxPrice=new Double("0.0");
     }
 
     public List<Rebate> getRebates() {
@@ -46,19 +46,19 @@ public class ProductFilter {
             this.names = names;
     }
 
-    public BigDecimal getMinPrice() {
+    public Double getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(BigDecimal minPrice) {
+    public void setMinPrice(Double minPrice) {
         this.minPrice = minPrice;
     }
 
-    public BigDecimal getMaxPrice() {
+    public Double getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(BigDecimal maxPrice) {
+    public void setMaxPrice(Double maxPrice) {
         this.maxPrice = maxPrice;
     }
 }

@@ -23,7 +23,7 @@ public class OrderPosition  implements Serializable {
 
     @NotNull
     @Price
-    private BigDecimal price;
+    private Double price;
 
     @JsonIgnore
     @NotNull
@@ -35,7 +35,7 @@ public class OrderPosition  implements Serializable {
     @NotNull
     private Rebate rebate;
 
-    public OrderPosition(Integer count, BigDecimal price, Order order, Product product, Rebate rebate) {
+    public OrderPosition(Integer count, Double price, Order order, Product product, Rebate rebate) {
         this.count = count;
         this.price = price;
         this.order = order;
@@ -68,11 +68,11 @@ public class OrderPosition  implements Serializable {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -86,7 +86,7 @@ public class OrderPosition  implements Serializable {
         this.order = order;
     }
 
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="productId")
     public Product getProduct() {
         return product;
@@ -96,7 +96,7 @@ public class OrderPosition  implements Serializable {
         this.product = product;
     }
 
-    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="rebateId")
     public Rebate getRebate() {
         return rebate;
@@ -110,14 +110,35 @@ public class OrderPosition  implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         OrderPosition that = (OrderPosition) o;
-        return Objects.equals(count, that.count) &&
-                Objects.equals(order, that.order) &&
-                Objects.equals(product, that.product);
+
+        if (count != null ? !count.equals(that.count) : that.count != null) return false;
+        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        return product != null ? product.equals(that.product) : that.product == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(count, order, product);
+        int result = count != null ? count.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (product != null ? product.hashCode() : 0);
+        return result;
     }
+
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        OrderPosition that = (OrderPosition) o;
+//        return Objects.equals(count, that.count) &&
+//                Objects.equals(order, that.order) &&
+//                Objects.equals(product, that.product);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(count, order, product);
+//    }
+
 }

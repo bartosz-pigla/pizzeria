@@ -30,10 +30,10 @@
         <!--powodzeniem!</strong>-->
         <!--Pomyslnie usunieto produkt z menu-->
         <!--</div>-->
-        <div class="alert alert-success fade in" ng-show="controller.deleted">
-            <a href="" class="close" ng-click="deleted=false">&times;</a> <strong>Operacja zakonczona
+        <div class="alert alert-success fade in" ng-if="controller.deleted == true">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Operacja zakończona
             powodzeniem!</strong>
-            Pomyslnie usunieto produkt z menu
+            Pomyślnie usunieto produkt z menu
         </div>
         <div class="row">
             <h2>Wybierz produkt do usuniecia</h2>

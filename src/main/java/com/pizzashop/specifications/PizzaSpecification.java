@@ -26,8 +26,8 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
     public Predicate toPredicate(Root<T> pizza, CriteriaQuery<?> query, CriteriaBuilder cb) {
         PizzaFilter pizzaFilter = (PizzaFilter) productFilter;
 
-        BigDecimal minDoughPrice = pizzaFilter.getDoughMinPrice();
-        BigDecimal maxDoughPrice = pizzaFilter.getDoughMaxPrice();
+        Double minDoughPrice = pizzaFilter.getDoughMinPrice();
+        Double maxDoughPrice = pizzaFilter.getDoughMaxPrice();
 
         List<DoughType> doughTypes=pizzaFilter.getDoughTypes();
         List<PizzaSize> pizzaSizes = pizzaFilter.getPizzaSizes();
@@ -39,7 +39,7 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
             predicate = cb.conjunction();
 
         if (minDoughPrice != null && maxDoughPrice != null)
-            predicate = minDoughPrice.equals(maxDoughPrice) ? predicate : cb.and(predicate, cb.between(pizza.<BigDecimal>get("doughPrice"), minDoughPrice, maxDoughPrice));
+            predicate = minDoughPrice.equals(maxDoughPrice) ? predicate : cb.and(predicate, cb.between(pizza.<Double>get("doughPrice"), minDoughPrice, maxDoughPrice));
 
         //pizza.get("doughType").
 
@@ -56,6 +56,4 @@ public class PizzaSpecification<T> extends ProductSpecification<T> {
 
         return predicate;
     }
-
-
 }

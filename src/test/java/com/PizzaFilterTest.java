@@ -57,8 +57,8 @@ public class PizzaFilterTest {
         Pizza expectedPizza = createPizza(ingredients, rebate);
         pizzaRepository.save(expectedPizza);
 
-        pizzaFilter.setDoughMinPrice(new BigDecimal("0.0"));
-        pizzaFilter.setDoughMaxPrice(new BigDecimal("100.0"));
+        pizzaFilter.setDoughMinPrice(new Double("0.0"));
+        pizzaFilter.setDoughMaxPrice(new Double("100.0"));
 
         Specification<Pizza> spec = new PizzaSpecification<>(pizzaFilter);
         List<Pizza> pizzaList = pizzaRepository.findAll(spec);

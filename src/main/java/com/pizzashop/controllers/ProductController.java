@@ -87,7 +87,9 @@ public class ProductController {
 
     @RequestMapping(value = "/delete/{productId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Integer productId) {
-        productRepository.delete(productId);
+        Product product = productRepository.findOne(productId);
+        product.setArchival(true);
+        productRepository.save(product);
     }
 
     //@CrossOrigin(origins = "http://localhost:63342")

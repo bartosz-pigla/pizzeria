@@ -13,13 +13,14 @@ import java.util.Set;
 public class PizzaBuilder {
     private String name;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private Set<Rebate> rebates=new HashSet<>();
     private String url;
     private DoughType doughType;
-    private BigDecimal doughPrice;
+    private Double doughPrice;
     private Set<Ingredient> ingredients=new HashSet<>();
     private PizzaSize pizzaSize;
+    private boolean archival;
 
     public PizzaBuilder setName(String name) {
         this.name = name;
@@ -31,7 +32,7 @@ public class PizzaBuilder {
         return this;
     }
 
-    public PizzaBuilder setPrice(BigDecimal price) {
+    public PizzaBuilder setPrice(Double price) {
         this.price = price;
         return this;
     }
@@ -51,7 +52,7 @@ public class PizzaBuilder {
         return this;
     }
 
-    public PizzaBuilder setDoughPrice(BigDecimal doughPrice) {
+    public PizzaBuilder setDoughPrice(Double doughPrice) {
         this.doughPrice = doughPrice;
         return this;
     }
@@ -66,6 +67,11 @@ public class PizzaBuilder {
         return this;
     }
 
+    public PizzaBuilder setArchival(boolean archival){
+        this.archival=archival;
+        return this;
+    }
+
     public PizzaBuilder addRebates(Rebate... rebates) {
         for (Rebate rebate:rebates
                 ) {
@@ -75,6 +81,6 @@ public class PizzaBuilder {
     }
 
     public Pizza createPizza() {
-        return new Pizza(name, description, price, rebates, url, doughType, doughPrice, ingredients, pizzaSize);
+        return new Pizza(name, description, price, rebates, url, doughType, doughPrice, ingredients, pizzaSize,archival);
     }
 }

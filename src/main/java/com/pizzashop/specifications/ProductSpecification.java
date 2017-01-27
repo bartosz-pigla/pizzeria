@@ -25,21 +25,18 @@ public class ProductSpecification<T> implements Specification<T> {
 
     @Override
     public Predicate toPredicate(Root<T> product, CriteriaQuery<?> query, CriteriaBuilder cb) {
-
-        BigDecimal minPrice = productFilter.getMinPrice();
-        BigDecimal maxPrice = productFilter.getMaxPrice();
-
-        //List<String>
-        //Set<String> names = new HashSet<>(productFilter.getNames());
-        //Set<Rebate> rebates = new HashSet<>(productFilter.getRebates());
+        Double minPrice = productFilter.getMinPrice();
+        Double maxPrice = productFilter.getMaxPrice();
 
         List<String> names = productFilter.getNames();
         List<Rebate> rebates = productFilter.getRebates();
 
         Predicate predicate=cb.conjunction();
 
+        predicate =cb.and(predicate, cb.isFalse(product.<Boolean>get("archival")));
+
         if (minPrice != null && maxPrice != null)
-            predicate = maxPrice.equals(maxPrice) ? predicate : cb.and(predicate, cb.between(product.<BigDecimal>get("price"), minPrice, maxPrice));
+            predicate = maxPrice.equals(minPrice) ? predicate : cb.and(predicate, cb.between(product.<Double>get("price"), minPrice, maxPrice));
 
         predicate = names == null || names.size()==0 ? predicate : cb.and(predicate, product.get("name").in(names));
 

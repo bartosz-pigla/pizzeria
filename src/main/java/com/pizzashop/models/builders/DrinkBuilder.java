@@ -10,10 +10,11 @@ import java.util.Set;
 public class DrinkBuilder {
     private String name;
     private String description;
-    private BigDecimal price;
+    private Double price;
     private Set<Rebate> rebates=new HashSet<>();
     private String url;
     private String literCount;
+    private boolean archival;
 
     public DrinkBuilder setName(String name) {
         this.name = name;
@@ -25,7 +26,7 @@ public class DrinkBuilder {
         return this;
     }
 
-    public DrinkBuilder setPrice(BigDecimal price) {
+    public DrinkBuilder setPrice(Double price) {
         this.price = price;
         return this;
     }
@@ -45,6 +46,11 @@ public class DrinkBuilder {
         return this;
     }
 
+    public DrinkBuilder setArchival(boolean archival) {
+        this.archival=archival;
+        return this;
+    }
+
     public DrinkBuilder addRebates(Rebate... rebates) {
         for (Rebate rebate:rebates
                 ) {
@@ -54,6 +60,6 @@ public class DrinkBuilder {
     }
 
     public Drink createDrink() {
-        return new Drink(name, description, price, rebates, url, literCount);
+        return new Drink(name, description, price, rebates, url, literCount,archival);
     }
 }

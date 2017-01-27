@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by barte on 31/12/2016.
  */
-public class PriceRangeValidator implements ConstraintValidator<Price, BigDecimal> {
+public class PriceRangeValidator implements ConstraintValidator<Price, Double> {
     Price price;
     @Override
     public void initialize(Price constraintAnnotation) {
@@ -15,8 +15,8 @@ public class PriceRangeValidator implements ConstraintValidator<Price, BigDecima
     }
 
     @Override
-    public boolean isValid(BigDecimal value, ConstraintValidatorContext context) {
+    public boolean isValid(Double value, ConstraintValidatorContext context) {
         return
-                value.compareTo(new BigDecimal("0.0")) != -1 && value.compareTo(new BigDecimal("50.0")) != 1;
+                value.compareTo(new Double("0.0")) != -1 && value.compareTo(new Double("50.0")) != 1;
     }
 }
