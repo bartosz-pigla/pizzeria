@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Entity
 @PrimaryKeyJoinColumn(name = "productId")

@@ -9,12 +9,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 public class PizzaFilter extends ProductFilter {
     protected List<Ingredient> ingredients;
 
-    protected Double doughMinPrice, doughMaxPrice;
+    protected Double doughMinPrice = new Double("0.0");
+    protected Double doughMaxPrice = new Double("0.0");
 
     protected List<DoughType> doughTypes;
 
@@ -30,8 +31,6 @@ public class PizzaFilter extends ProductFilter {
     }
 
     public PizzaFilter(){
-        this.doughMinPrice=new Double("0.0");
-        this.doughMaxPrice=new Double("0.0");
     }
 
     //    public PizzaFilter(List<Rebate> rebates, List<String> names, BigDecimal minPrice, BigDecimal maxPrice, List<Ingredient> ingredients, BigDecimal doughMinPrice, BigDecimal doughMaxPrice, List<DoughType> doughTypes) {

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 public class PizzaSpecification<T> extends ProductSpecification<T> {
     public PizzaSpecification(PizzaFilter pizzaFilter) {

@@ -10,7 +10,7 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 @Documented
 @Constraint(validatedBy = PriceRangeValidator.class)

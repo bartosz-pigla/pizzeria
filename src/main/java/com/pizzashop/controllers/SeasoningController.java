@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by barte on 13/12/2016.
+ * operacje CRUD na encji Przyprawy
+ * Created by Bartosz Pigla on 13/12/2016.
  */
 @RestController
 @RequestMapping("/seasoning")
@@ -18,6 +19,10 @@ public class SeasoningController {
     @Autowired
     SeasoningRepository seasoningRepository;
 
+    /**
+     * Zwraca listę wszystkich sosów istniejących w bazie danych
+     * @return lista sosów
+     */
     //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Seasoning> readAll(){

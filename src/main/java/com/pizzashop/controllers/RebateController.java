@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by barte on 14/12/2016.
+ * operacje CRUD na encji Składniki
+ * Created by Bartosz Pigla on 14/12/2016.
  */
 @RestController
 @RequestMapping("/rebate")
@@ -18,6 +19,10 @@ public class RebateController {
     @Autowired
     RebateRepository rebateRepository;
 
+    /**
+     * zwraca wszystkie rabaty które istnieją w bazie danych
+     * @return rabaty
+     */
     //@CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/read/all")
     public List<Rebate> readAll(){

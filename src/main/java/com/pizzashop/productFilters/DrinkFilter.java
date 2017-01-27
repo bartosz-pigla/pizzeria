@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 public class DrinkFilter extends ProductFilter {
     protected List<String> literCounts;

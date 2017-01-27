@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.QueryHint;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Transactional
 public interface SauceRepository extends ProductBaseRepository<Sauce>,JpaSpecificationExecutor<Sauce> {

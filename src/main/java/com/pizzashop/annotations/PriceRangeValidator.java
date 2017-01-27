@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.math.BigDecimal;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 public class PriceRangeValidator implements ConstraintValidator<Price, Double> {
     Price price;

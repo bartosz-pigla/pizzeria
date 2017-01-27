@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Created by barte on 10/12/2016.
+ * Created by Bartosz Pigla on 10/12/2016.
  */
 @Entity
 @Cacheable

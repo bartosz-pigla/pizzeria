@@ -13,7 +13,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by barte on 09/12/2016.
+ * Kontroler zawierający REST servicy wykonujace operacje CRUD na encji Sos
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @RestController
 @RequestMapping("/sauce")
@@ -22,17 +23,33 @@ public class SauceController {
     @Autowired
     SauceRepository sauceRepository;
 
+    /**
+     * aktualizuje sos o id istniejącym w bazie danych
+     * @param sauce sos do zaktualizowania
+     */
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(@RequestBody @Valid Sauce sauce){
         sauceRepository.save(sauce);
     }
 
+    /**
+     * zapisuje sos i nadaje mu id
+     * @param sauce sos który ma zostać zapisany w bazie danych
+     * @return  utworzony sos
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Sauce create(@RequestBody @Valid Sauce sauce){
         Sauce sauce1 = sauceRepository.save(sauce);
         return sauce1;
     }
 
+    /**
+     * zwraca sosy spełniające kryteria wyspecyfikowane w parametrze sauceFilter
+     * @param sauceFilter kryteria które musi spełnić sos
+     * @param pageSize maksymalna liczba sosów do pobrania z bazy danych
+     * @param pageNumber numer strony
+     * @return lista sosów
+     */
     @RequestMapping(value = "/read", method = RequestMethod.POST)
     public List<Sauce> read(
             @RequestBody SauceFilter sauceFilter,
@@ -49,6 +66,11 @@ public class SauceController {
         return sauces;
     }
 
+    /**
+     * liczba wszystkich sosów istniejących w bazie danych spełniających kryteria wyspecyfikowane w parametrze sauceFilter
+     * @param sauceFilter kryteria które musi spełnić sos
+     * @return liczba sosów
+     */
     @RequestMapping(value = "/count", method = RequestMethod.POST)
     public Long count(
             @RequestBody SauceFilter sauceFilter

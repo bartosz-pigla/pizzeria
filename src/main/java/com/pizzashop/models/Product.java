@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

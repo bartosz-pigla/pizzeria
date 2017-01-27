@@ -21,11 +21,16 @@ import java.util.List;
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerExceptionHandler {
     /**
-     *
+     *obiekt zawierający listę pól które zostały nieprawidłowo przesłane do webservice
      */
     @Autowired
     MessageSource messageSource;
 
+    /**
+     * metoda tworząca listę błędów obieku który nie został prawidłowo zwalidowany
+     * @param ex rodzaj wyjątku rzuconego przez kontroler
+     * @return obiekt DTO zawierający listę pól oraz błędów
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -42,6 +47,10 @@ public class ControllerExceptionHandler {
         return errors;
     }
 
+    /**
+     * metoda wywoływana w przypadku niepowodzenia zapisywania obiektu do bazy danych
+     * @return komunikat zwracany w przypadku bledow HTML 500
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody

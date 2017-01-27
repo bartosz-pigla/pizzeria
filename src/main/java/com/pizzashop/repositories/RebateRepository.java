@@ -11,7 +11,7 @@ import javax.persistence.QueryHint;
 import java.util.List;
 
 /**
- * Created by barte on 10/12/2016.
+ * Created by Bartosz Pigla on 10/12/2016.
  */
 @Transactional
 public interface RebateRepository extends JpaRepository<Rebate,Integer>{

@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Service
 @Configurable

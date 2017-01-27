@@ -10,7 +10,7 @@ import com.pizzashop.models.Sauce;
 import java.util.List;
 
 /**
- * Created by barte on 30/12/2016.
+ * Created by Bartosz Pigla on 30/12/2016.
  */
 public interface ProductRepositoryCustom {
     Pizza save(Pizza pizza) throws IngredientNotFoundException, RebateNotFoundException;

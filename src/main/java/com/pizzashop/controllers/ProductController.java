@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @RestController
 @RequestMapping("/product")

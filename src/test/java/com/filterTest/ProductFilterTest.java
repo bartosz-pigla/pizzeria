@@ -27,7 +27,7 @@ import static com.TestHelper.compareNotOrderedCollections;
 import static com.pizzashop.repositories.initializers.DbInitializer.createPizza;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = PizzaShopApplication.class)

@@ -14,7 +14,7 @@ import java.util.Set;
 import static com.pizzashop.repositories.initializers.DbInitializer.*;
 
 /**
- * Created by barte on 30/12/2016.
+ * Created by Bartosz Pigla on 30/12/2016.
  */
 @Repository
 public class InitEntitiesRepository {

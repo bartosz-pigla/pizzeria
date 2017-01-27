@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * Created by barte on 01/01/2017.
+ * Created by Bartosz Pigla on 01/01/2017.
  */
 public class DrinkSpecification<T> extends ProductSpecification<T> {
     public DrinkSpecification(DrinkFilter drinkFilter) {

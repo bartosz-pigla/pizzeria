@@ -5,7 +5,7 @@ import com.pizzashop.repositories.customRepositories.FilterRepositoryCustom;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 @Transactional
 public interface FilterRepository extends ProductBaseRepository<Product>, FilterRepositoryCustom{

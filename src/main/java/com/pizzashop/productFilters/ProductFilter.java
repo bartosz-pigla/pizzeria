@@ -6,17 +6,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by barte on 31/12/2016.
+ * Created by Bartosz Pigla on 31/12/2016.
  */
 public class ProductFilter {
-
     protected List<Rebate> rebates;
-
 
     protected List<String> names;
 
-
-    protected Double minPrice, maxPrice;
+    protected Double minPrice = new Double("0.0");
+    protected Double maxPrice = new Double("0.0");
 
     public ProductFilter(List<Rebate> rebates, List<String> names, Double minPrice, Double maxPrice) {
         this.rebates = rebates;
@@ -26,8 +24,6 @@ public class ProductFilter {
     }
 
     public ProductFilter() {
-        this.minPrice=new Double("0.0");
-        this.maxPrice=new Double("0.0");
     }
 
     public List<Rebate> getRebates() {

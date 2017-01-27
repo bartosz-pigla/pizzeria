@@ -1,7 +1,7 @@
 package com.pizzashop.models.builders;
 
 /**
- * Created by barte on 29/12/2016.
+ * Created by Bartosz Pigla on 29/12/2016.
  */
 public class ProductFactory {
 

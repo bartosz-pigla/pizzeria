@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Entity
 public class Complaint  implements Serializable {

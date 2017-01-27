@@ -12,7 +12,7 @@ import javax.persistence.QueryHint;
 import java.util.List;
 
 /**
- * Created by barte on 08/12/2016.
+ * Created by Bartosz Pigla on 08/12/2016.
  */
 @Transactional
 public interface PizzaRepository extends ProductBaseRepository<Pizza>,JpaSpecificationExecutor<Pizza> {

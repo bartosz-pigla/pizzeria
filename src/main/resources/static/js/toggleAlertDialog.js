@@ -20,5 +20,5 @@ function toggleDialogView(){
         "show"      : true                     // ensure the modal is shown immediately
     });
 }/**
- * Created by barte on 03/12/2016.
+ * Created by Bartosz Pigla on 03/12/2016.
  */

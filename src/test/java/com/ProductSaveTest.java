@@ -17,7 +17,7 @@ import java.util.Set;
 import static com.pizzashop.repositories.initializers.DbInitializer.*;
 
 /**
- * Created by barte on 30/12/2016.
+ * Created by Bartosz Pigla on 30/12/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = PizzaShopApplication.class)

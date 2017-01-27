@@ -13,7 +13,7 @@ import javax.persistence.QueryHint;
 import java.util.List;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @NoRepositoryBean
 public interface ProductBaseRepository<T extends Product> extends JpaRepository<T, Integer> {

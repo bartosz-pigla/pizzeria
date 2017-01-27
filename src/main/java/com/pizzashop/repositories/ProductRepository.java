@@ -12,7 +12,7 @@ import javax.persistence.QueryHint;
 import java.util.List;
 
 /**
- * Created by barte on 09/12/2016.
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @Transactional
 public interface ProductRepository extends ProductBaseRepository<Product> {

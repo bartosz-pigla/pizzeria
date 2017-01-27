@@ -16,26 +16,46 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by barte on 09/12/2016.
+ * operacje CRUD na encji Drink
+ * Created by Bartosz Pigla on 09/12/2016.
  */
 @RestController
 @RequestMapping("/drink")
 @CrossOrigin(origins = "http://localhost:63342")
 public class DrinkController {
+    /**
+     * repozytorium napojów z którego korzystają webservicy
+     */
     @Autowired
     DrinkRepository drinkRepository;
 
+    /**
+     * metoda aktualizująca napój do bazy danych
+     * @param drink obiekt JSON otrzymany od klienta
+     */
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(@RequestBody @Valid Drink drink){
         drinkRepository.save(drink);
     }
 
+    /**
+     *metoda zapisująca napój do bazy danych
+     * @param drink
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Drink create(@RequestBody @Valid Drink drink){
         drinkRepository.save(drink);
         return drink;
     }
 
+    /**
+     * metoda odczytująca listę napojów
+     * @param drinkFilter filtr produktów
+     * @param pageSize liczba napojów do pobrania
+     * @param pageNumber numer strony
+     * @return lista napojów
+     */
     @RequestMapping(value = "/read", method = RequestMethod.POST)
     public List<Drink> read(
             @RequestBody DrinkFilter drinkFilter,
@@ -52,6 +72,11 @@ public class DrinkController {
         return drinks;
     }
 
+    /**
+     * pobiera listę wszystkich napojów spełniających kryteria
+     * @param drinkFilter kryteria które musi spełnić napój
+     * @return lista napojów spełniających dane kryteria
+     */
     @RequestMapping(value = "/count", method = RequestMethod.POST)
     public Long count(
             @RequestBody DrinkFilter drinkFilter
