@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * Kontroler zawierający REST servicy wykonujace operacje CRUD na encji Reklamacje
  * Created by barte on 10/12/2016.
  */
 @RestController
@@ -19,6 +20,12 @@ public class ComplaintController {
     @Autowired
     ComplaintRepository complaintRepository;
 
+    /**
+     * Metoda pobiera z bazy danych reklamacje.
+     * @param pageSize liczba elementów do pobrania z bazy danych
+     * @param pageNumber numer strony
+     * @return lista reklamacji
+     */
     @RequestMapping("/read")
     public List<Complaint> read(
             @RequestParam(value = "pageSize", required = true) Integer pageSize,
@@ -28,6 +35,11 @@ public class ComplaintController {
                 .findAll(new PageRequest((pageNumber == null) ? 0 : pageNumber - 1, pageSize))
                 .getContent();
     }
+
+    /**
+     * metoda pobierająca liczbę wszystkich reklamacji w bazie danych
+     * @return liczba wszystkich reklamacji w bazie danych
+     */
 
     @RequestMapping("/count")
     public Long count() {
