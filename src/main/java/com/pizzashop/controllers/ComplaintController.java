@@ -12,11 +12,14 @@ import java.util.List;
 
 /**
  * Kontroler zawierający REST servicy wykonujace operacje CRUD na encji Reklamacje
- * Created by barte on 10/12/2016.
+ * Created by Bartosz Pigla on 10/12/2016.
  */
 @RestController
 @RequestMapping("/complaint")
 public class ComplaintController {
+    /**
+     * repozytorium reklamacji z którego korzystają webservicy
+     */
     @Autowired
     ComplaintRepository complaintRepository;
 

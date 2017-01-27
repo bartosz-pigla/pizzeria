@@ -15,10 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by barte on 01/01/2017.
+ * Obsługa wyjątków rzuconych przez kontrolery(np. ComplaintController)
+ * Created by Bartosz Pigla on 01/01/2017.
  */
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerExceptionHandler {
+    /**
+     *
+     */
     @Autowired
     MessageSource messageSource;
 

@@ -1,3 +1,3 @@
-var globalUrl ='pizzeria-pwr.herokuapp.com/';
+// var globalUrl ='pizzeria-pwr.herokuapp.com/';
 // var globalUrl ='http://localhost:8080/';
-//var globalUrl='';
+var globalUrl='';//postgre cloud
