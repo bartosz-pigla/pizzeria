@@ -5,9 +5,9 @@ import com.pizzashop.productFilters.DrinkFilter;
 import com.pizzashop.productFilters.PizzaFilter;
 import com.pizzashop.productFilters.SauceFilter;
 import com.pizzashop.repositories.customRepositories.ProductRepositoryImpl;
-import com.pizzashop.repositories.initializers.DbInitializer;
-import com.pizzashop.repositories.initializers.ProductFilterInitializer;
-import com.pizzashop.repositories.listeners.FilterChangedListener;
+import com.pizzashop.initializers.DbInitializer;
+import com.pizzashop.initializers.ProductFilterInitializer;
+import com.pizzashop.aop.FilterChangedListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -49,26 +49,11 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		};
 	}
 
-//	@Override
-//	public void addViewControllers(ViewControllerRegistry registry) {
-//		registry.addViewController("/addProduct").setViewName("addProduct.html");
-//		registry.addViewController("/deleteProduct").setViewName("deleteProduct.html");
-//		registry.addViewController("/editProduct").setViewName("editProduct.html");
-//		registry.addViewController("/readComplaint").setViewName("readComplaint.html");
-//		registry.addViewController("/index").setViewName("index.html");
-//		registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//	}
-//
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
 		super.configurePathMatch(configurer);
 		configurer.setUseSuffixPatternMatch(false);
 	}
-
-	@Bean
-	public BeanPrinter beanPrinter(){
-		return new BeanPrinter();
-}
 
 	@Bean(name = "dbInitializer")
 	public DbInitializer getDbInitializer(){
@@ -98,36 +83,4 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 	public DrinkFilter drinkFilter(ProductFilterInitializer productFilterInitializer){
 		return productFilterInitializer.createDrinkFilter();
 	}
-//	@Bean
-//	public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
-//		JpaTransactionManager transactionManager = new JpaTransactionManager(emf);
-//
-//		return transactionManager;
-//	}
-//
-//	@Bean
-//	public LocalContainerEntityManagerFactoryBean entityManagerFactory
-//			(DataSource dataSource, JpaVendorAdapter jpaVendeorAdapter)
-//	{
-//		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-//		entityManagerFactory.setDataSource(dataSource);
-//		entityManagerFactory.setJpaVendorAdapter(jpaVendeorAdapter);
-//		entityManagerFactory.setPackagesToScan("com.pizzashop.models");
-//		return entityManagerFactory;
-//	}
-//
-//	@Bean
-//	public JpaVendorAdapter jpaVendorAdapter()
-//	{
-//		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-//		adapter.setShowSql(true);
-//		adapter.setGenerateDdl(false);
-//		adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
-//
-//		return adapter;
-//	}
-//	@Bean
-//	public HibernateJpaSessionFactoryBean sessionFactory() {
-//		return new HibernateJpaSessionFactoryBean();
-//	}
 }

@@ -70,6 +70,20 @@ public class ProductControllerTest {
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
+
+    @Test
+    public void notDeletes(){
+        int invalidProductId=10000;
+
+        try {
+            mockMvc.perform(delete("/product/delete/"+invalidProductId))
+                    .andExpect(status().is5xxServerError())
+                    .andExpect(jsonPath("$", is("db error")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void deletes(){
         Pizza p1=pizzaRepository.findAll().get(0);
@@ -82,6 +96,11 @@ public class ProductControllerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void notUpdates(){
+
     }
 
     @Test

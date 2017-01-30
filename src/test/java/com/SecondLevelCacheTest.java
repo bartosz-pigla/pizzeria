@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.pizzashop.repositories.initializers.DbInitializer.createPizza;
+import static com.pizzashop.initializers.DbInitializer.createPizza;
 
 /**
  * Created by Bartosz Pigla on 31/12/2016.

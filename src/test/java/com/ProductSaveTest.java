@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.pizzashop.repositories.initializers.DbInitializer.*;
+import static com.pizzashop.initializers.DbInitializer.*;
 
 /**
  * Created by Bartosz Pigla on 30/12/2016.
