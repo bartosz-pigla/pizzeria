@@ -60,7 +60,7 @@
     <label for="priceForGoodDoughType">Dodatkowy koszt dla ciasta grubego</label>
     <input type="number" name="doughPrice" class="form-control" id="priceForGoodDoughType" placeholder="Dodatkowy koszt ciasta grubego" ng-model="controller.selectedItem.doughPrice" ng-max="50.0" ng-min="0.0" required/>
 
-    <div ng-show="pizzaCost.price.$touched">
+    <div ng-show="pizzaCost.doughPrice.$touched">
         <div class="alert alert-danger fade in" ng-show="pizzaCost.doughPrice.$error.required">
             <a href="" class="close" data-dismiss="alert">&times;</a>
             <strong>Błąd</strong>
