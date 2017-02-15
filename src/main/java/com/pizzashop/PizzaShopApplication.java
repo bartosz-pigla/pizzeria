@@ -8,6 +8,8 @@ import com.pizzashop.repositories.customRepositories.ProductRepositoryImpl;
 import com.pizzashop.initializers.DbInitializer;
 import com.pizzashop.initializers.ProductFilterInitializer;
 import com.pizzashop.aop.FilterChangedListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -15,12 +17,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @SpringBootApplication
 @Configuration
@@ -82,5 +87,35 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 	@DependsOn("dbInitializer")
 	public DrinkFilter drinkFilter(ProductFilterInitializer productFilterInitializer){
 		return productFilterInitializer.createDrinkFilter();
+	}
+
+	@Bean(name = "requestForHeroku")
+	public RestTemplate restTemplateForHerokuServerSleepingPrevention(){
+		return new RestTemplate();
+	}
+
+	@Bean(name="DRIVER_NAME")
+	public String driverName(){
+		return System.getenv("DRIVER_NAME");
+	}
+
+	@Bean
+	public Timer herokuServerSleepingPrevention(
+			@Qualifier(value = "DRIVER_NAME") String driverName,
+			@Qualifier(value = "requestForHeroku") RestTemplate restTemplate
+			){
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				System.out.println("log for the sake of Heroku");
+				if(driverName.equals("org.postgresql.Driver")){
+					restTemplate.getForObject("http://pizzeria-pwr.herokuapp.com/", null);
+					System.out.println("Heroku database driver name: "+driverName);
+				}
+			}
+		},0,1000*3);
+
+		return timer;
 	}
 }
