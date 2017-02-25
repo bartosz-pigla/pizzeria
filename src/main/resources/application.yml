@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    driver-class-name: ${DRIVER_NAME}
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${HIBERNATE_DIALECT}
+        cache:
+          use_second_level_cache: true
+          use_query_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      javax:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+security:
+  user:
+    password: password

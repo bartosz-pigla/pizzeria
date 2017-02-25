@@ -8,15 +8,26 @@ import com.pizzashop.repositories.customRepositories.ProductRepositoryImpl;
 import com.pizzashop.initializers.DbInitializer;
 import com.pizzashop.initializers.ProductFilterInitializer;
 import com.pizzashop.aop.FilterChangedListener;
+import com.pizzashop.services.CustomUserDetails;
+import com.pizzashop.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -24,17 +35,24 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.util.Timer;
 import java.util.TimerTask;
 
 @SpringBootApplication
 @Configuration
-@ComponentScan(basePackageClasses={PizzaController.class, DbInitializer.class, FilterChangedListener.class, ProductRepositoryImpl.class})
+@ComponentScan(basePackageClasses={PizzaController.class, DbInitializer.class, FilterChangedListener.class, ProductRepositoryImpl.class, CustomUserDetailsService.class})
 @EnableTransactionManagement
 @EnableCaching
+@RestController
 public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 	public static void main(String[] args) {
 		SpringApplication.run(PizzaShopApplication.class, args);
+	}
+
+	@RequestMapping("/user")
+	public Principal user(Principal user) {
+		return user;
 	}
 
 	@Bean
@@ -117,5 +135,55 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		},0,1000*3);
 
 		return timer;
+	}
+
+	//SECURITY
+
+
+//
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth
+//				.inMemoryAuthentication()
+//				.withUser("u2").password("p2").roles("USER");
+//	}
+
+	@Configuration
+	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+//			// @formatter:off
+//			http
+//				.httpBasic().and()
+//				.authorizeRequests()
+//					.antMatchers("/index.html", "/home.html", "/login.html", "/", "/info.html").permitAll()
+//					.antMatchers("/**").permitAll()
+//					.anyRequest().authenticated()
+//					.and()
+//				.csrf()
+//					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//			// @formatter:on
+
+			// @formatter:off
+			http
+					.httpBasic().and()
+					.authorizeRequests()
+					.antMatchers("/**").permitAll()
+					.antMatchers(HttpMethod.GET,"/foo").permitAll()
+					.antMatchers(HttpMethod.GET,"/**").authenticated()
+					.and()
+					.csrf()
+					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			// @formatter:on
+		}
+
+		@Autowired
+		private CustomUserDetailsService userDetailsService;
+
+		@Autowired
+		public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(userDetailsService);
+		}
 	}
 }

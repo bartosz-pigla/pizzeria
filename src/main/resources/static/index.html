@@ -7,6 +7,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
     <style type="text/css">
         [ng\:cloak], [ng-cloak], .ng-cloak {
             display: none !important;
@@ -47,7 +49,31 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a><strong>Zalogowano jako: Bartosz Pigla (kierownik)</strong> </a></li>
+                <!--<p>{{nav.user}}</p>-->
+                <!--<p>{{controller.user}}</p>-->
+                <!--<p>{{user}}</p>-->
+                <!--<p>{{navigationController.user}}</p>-->
+                <li ng-show="!authenticated"><a href="#login"><span>Zaloguj</span></a></li>
+                <li ng-show="authenticated" class="dropdown"><a class="dropdown-toggle"
+                                        data-toggle="dropdown"><span>Zalogowano jako: {{user.name}}</span>
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="nav.logout()" class="btn btn-link" href=""><span>Wyloguj</span></a></li>
+                        <!-- <li class="divider"></li> -->
+                    </ul>
+                </li>
+
+                <!--&lt;!&ndash;<li ><a><strong>Zalogowano jako: Bartosz Pigla (kierownik)</strong> </a></li>&ndash;&gt;-->
+                <!--<li ng-show="!authenticated"><a href="#login"><span>Zaloguj</span></a></li>-->
+                <!--&lt;!&ndash;<li ng-show="!authenticated"><a><strong>Trzeba sie zalogowac</strong> </a></li>&ndash;&gt;-->
+
+                <!--<div ng-show="authenticated">-->
+                    <!--<h1>{{controller.user.name}}</h1>-->
+                    <!--<a ng-click="nav.logout()" class="btn btn-link" href=""><h3>Wyloguj</h3></a>-->
+                <!--</div>-->
+
+                <!--<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Wyloguj</a></li>-->
+                <!--<li ng-show="authenticated"><a href="" ng-click="nav.logout()">Wyloguj</a></li>-->
             </ul>
             <!--<ul class="nav navbar-nav navbar-right">-->
                 <!--<li><a href="?lang=en">English </a></li>-->
@@ -74,6 +100,8 @@
 
 <script src="js/controllers/start.js"></script>
 <script src="js/controllers/navigation.js"></script>
+
+<!--<script src="js/controllers/login.js"></script>-->
 
 <script src="js/controllers/addProduct.js"></script>
 <script src="js/controllers/editProduct.js"></script>

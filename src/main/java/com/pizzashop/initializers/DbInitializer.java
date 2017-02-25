@@ -157,6 +157,14 @@ public class DbInitializer {
                 .createComplaint();
     }
 
+    public static Manager createManager(){
+        return new ManagerBuilder()
+                .seteMail("bartoszpigla@o2.pl")
+                .setPassword("1234")
+                .setRoles(Arrays.asList("ROLE_ADMIN","ADMIN","USER"))
+                .createManager();
+    }
+
     @PostConstruct
     @Transactional
     public void initialize() {

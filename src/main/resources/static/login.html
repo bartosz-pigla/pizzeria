@@ -1,0 +1,66 @@
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-offset-5 col-md-3">-->
+<!--<div class="form-login">-->
+<!--<h4>Welcome back.</h4>-->
+<!--<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />-->
+<!--</br>-->
+<!--<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />-->
+<!--</br>-->
+<!--<div class="wrapper">-->
+<!--<span class="group-btn">-->
+<!--<a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="row">
+    <!--left-->
+    <div class="col-md-2" id="leftCol">
+        <div class="nav nav-stacked" id="sidebar">
+
+        </div>
+    </div>
+    <!--/left-->
+
+    <!--right-->
+    <div class="col-md-7">
+        <!--<p>{{error}}</p>-->
+        <!--<p>{{user}}</p>-->
+
+        <!--<div class="alert alert-danger" ng-show="error">-->
+            <!--Wprowadzono nieprawidłowe dane. Proszę spróbować ponownie-->
+        <!--</div>-->
+
+        <div class="alert alert-danger fade in" ng-show="error">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Wprowadzono nieprawidłowe dane. Proszę spróbować ponownie</strong>
+        </div>
+
+        <div class="alert alert-danger fade in">
+            <a href="" class="close" data-dismiss="alert">&times;</a> <strong>Przykładowe dane logowaia</strong>
+            <p>e-mail: bartoszpigla@o2.pl</p>
+            <p>hasło: 1234</p>
+        </div>
+
+        <form role="form" ng-submit="controller.login()">
+            <div class="form-group">
+                <label for="username">Adres e-mail użytkownika:</label> <input type="text"
+                                                               class="form-control" id="username" name="username"
+                                                               ng-model="controller.credentials.username"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Hasło:</label> <input type="password"
+                                                               class="form-control" id="password" name="password"
+                                                               ng-model="controller.credentials.password"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Zaloguj</button>
+        </form>
+
+    </div>
+    <!--/right-->
+</div>

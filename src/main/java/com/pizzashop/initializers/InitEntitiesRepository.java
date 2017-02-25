@@ -85,6 +85,8 @@ public class InitEntitiesRepository {
 
         entityManager.persist(complaint);
 
+        entityManager.persist(createManager());
+
         entityManager.flush();
 
 //        rebate=createRebate();
