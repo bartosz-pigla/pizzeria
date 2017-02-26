@@ -142,6 +142,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 	@Bean
 	public Timer herokuServerSleepingPrevention(
 			@Qualifier(value = "DRIVER_NAME") String driverName,
+			@Qualifier(value = "APP_URL") String appUrl,
 			@Qualifier(value = "requestForHeroku") RestTemplate restTemplate
 			){
 		Timer timer = new Timer();
@@ -150,7 +151,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 			public void run() {
 				//System.out.println("log for the sake of Heroku");
 				if(driverName.equals("org.postgresql.Driver")){
-					restTemplate.getForObject("http://pizzeria-pwr.herokuapp.com/product/count", Integer.class);
+					restTemplate.getForObject(appUrl+"/product/count", Integer.class);
 					System.out.println("Heroku database driver name: "+driverName);
 				}
 			}
