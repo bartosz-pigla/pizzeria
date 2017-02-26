@@ -14,6 +14,10 @@ public class ActivationLink {
 
     private Date creationDate = new Date();
 
+    public ActivationLink(){
+
+    }
+
     public ActivationLink(int id, int number) {
         this.id=id;
         this.number=number;

@@ -60,6 +60,12 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		return user;
 	}
 
+	@RequestMapping("/foo")
+	public void foo() {
+		System.out.println("FOO");
+
+	}
+
 //	@RequestMapping(value = "/register", method = RequestMethod.POST)
 //	public Manager user(@RequestBody @Validated({Manager.LoginValidation.class, Manager.RegistrationValidation.class}) Manager manager){
 //		System.out.println(manager);
@@ -183,6 +189,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 					.antMatchers("/**").permitAll()
 					.antMatchers(HttpMethod.GET,"/foo").permitAll()
 					.antMatchers(HttpMethod.POST,"/register").permitAll()
+					.antMatchers(HttpMethod.POST,"/activate").permitAll()
 					.antMatchers(HttpMethod.GET,"/**").authenticated()
 					.and()
 					.csrf()

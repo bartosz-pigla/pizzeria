@@ -13,58 +13,60 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 
 @Component
-@Scope(value="singleton",proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ActivationService {
-    private Set<ActivationLink> activationLinks=new CopyOnWriteArraySet<>();
+    private Set<ActivationLink> activationLinks = new CopyOnWriteArraySet<>();
 
-    private Random random=new Random();
+    private Random random = new Random();
 
-    private int maxActivationLinkNumber=1000;
+    private int maxActivationLinkNumber = 1000;
 
-    private Set<Integer> numbersNotToRandom=new CopyOnWriteArraySet<>();
+    private Set<Integer> numbersNotToRandom = new CopyOnWriteArraySet<>();
 
     private Timer deleteActivationLinks = new Timer();
 
-    private int expiryTime=1000*60*60;//1 hour
+    private int expiryTime = 1000 * 60 * 60;//1 hour
 
     public ActivationService() {
         deleteActivationLinks.schedule(new TimerTask() {
             @Override
             public void run() {
-                Date date=new Date();
-                Set<ActivationLink> activationLinksToDelete=new CopyOnWriteArraySet<>();
+                Date date = new Date();
+                Set<ActivationLink> activationLinksToDelete = new CopyOnWriteArraySet<>();
 
-                for (ActivationLink activationLink:activationLinks
+                for (ActivationLink activationLink : activationLinks
                         ) {
-                    long ms=(date.getTime() - activationLink.getCreationDate().getTime());
-                    if(ms>expiryTime)
+                    long ms = (date.getTime() - activationLink.getCreationDate().getTime());
+                    if (ms > expiryTime)
                         activationLinksToDelete.add(activationLink);
                 }
 
-                for(ActivationLink activationLink: activationLinksToDelete){
+                for (ActivationLink activationLink : activationLinksToDelete) {
                     activationLinks.remove(activationLink);
                 }
             }
-        },0,expiryTime);
+        }, 0, expiryTime);
     }
 
-    public void createLink(int id){
-        activationLinks.add(new ActivationLink(id,randomNumber()));
+    public ActivationLink createLink(int id) {
+        ActivationLink activationLink = new ActivationLink(id, randomNumber());
+        activationLinks.add(activationLink);
+        return activationLink;
     }
 
-    public boolean canBeActivated(ActivationLink activationLinkToFind){
+    public boolean canBeActivated(ActivationLink activationLinkToFind) {
         return activationLinks.contains(activationLinkToFind);
     }
 
-    private int randomNumber(){
-        int number=0;
+    private int randomNumber() {
+        int number = 0;
 
-        if(numbersNotToRandom.size()>=maxActivationLinkNumber)
-            maxActivationLinkNumber+=maxActivationLinkNumber;
-        else{
-            while(numbersNotToRandom.contains(number)){
-                number = random.nextInt(maxActivationLinkNumber)+1;
-            }
+        if (numbersNotToRandom.size() >= maxActivationLinkNumber)
+            maxActivationLinkNumber += maxActivationLinkNumber;
+
+        number = random.nextInt(maxActivationLinkNumber) + 1;
+        while (numbersNotToRandom.contains(number)) {
+            number = random.nextInt(maxActivationLinkNumber) + 1;
         }
 
         return number;

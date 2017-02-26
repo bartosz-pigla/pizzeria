@@ -20,7 +20,50 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: bartek217a
+    password: SwiatJestInny218%
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+#  mail:
+#            host: smtp.gmail.com
+#            port: 587
+#            username: gmailuserid@gmail.com  #Replace this field with your Gmail username.
+#            password: ************           #Replace this field with your Gmail password.
+#            protocol: smtp
+#            tls: true
+#            properties.mail.smtp:
+#                auth: true
+#                starttls.enable: true
+#                ssl.trust: smtp.gmail.com
+
+
+#  mail:
+#    properties:
+#      mail:
+#        smtp:
+#          starttls:
+#            enable: true
+#        host: smtp.gmail.com
+#        username: bartek217a@gmail.com
+#        password: SwiatJestInny218%
+#        port: 587
+#        smtp:
+#          auth: true
 
 security:
   user:
     password: password
+#
+#    spring: mail.properties.mail.smtp.starttls.enable=true
+#    spring.mail.host=smtp.gmail.com
+#    spring.mail.username=USER
+#    spring.mail.password=PASSWORD
+#    spring.mail.port=587
+#    spring.mail.smtp.auth=true

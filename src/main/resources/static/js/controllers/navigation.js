@@ -7,7 +7,10 @@ angular.module('pizzaShopManagementApp')
                 // console.log("ROUTE CHANGE");
                 // console.log(route);
                 return $route.current && route === $route.current.controller;
+
             };
+
+
 
             AuthenticationService.authenticate();
 
@@ -15,6 +18,26 @@ angular.module('pizzaShopManagementApp')
             //$scope.error = false;
 
             self.login = function () {
+
+                console.log('FOO');
+
+                $http
+                    .get(
+                        globalUrl + '/foo'
+                    )
+                    .then(
+                        function successCallback(response) {
+                            console.log('FOO SUCCESS');
+
+                            //self.activated = true;
+                        },
+                        function errorCallback(response) {
+                            console.log('FOO ERROR');
+
+                            //self.activated = false;
+                        }
+                    );
+
                 AuthenticationService.login(self.credentials);
 
                 if($rootScope.authenticated)

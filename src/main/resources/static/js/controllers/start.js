@@ -44,6 +44,12 @@ var pizzaShopManagementApp = angular.module('pizzaShopManagementApp', ['ngRoute'
                     controllerAs: 'controller',
                     requiresLogin: false
                 })
+                .when('/activate/:id/:number', {
+                    templateUrl: 'activation.html',
+                    controller: 'activationController',
+                    controllerAs: 'controller',
+                    requiresLogin: false
+                })
                 .otherwise('/');
 
             $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -186,6 +192,9 @@ var pizzaShopManagementApp = angular.module('pizzaShopManagementApp', ['ngRoute'
                     $window.authenticated=true;
                 } else {
                     console.log("LOGIN FAILED");
+
+
+
                     $location.path("/login");
                     $rootScope.error = true;
                     $rootScope.authenticated = false;
