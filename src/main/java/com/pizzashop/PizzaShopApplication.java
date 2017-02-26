@@ -151,12 +151,11 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 			public void run() {
 				//System.out.println("log for the sake of Heroku");
 				if(driverName.equals("org.postgresql.Driver")){
-					restTemplate.getForObject(appUrl+"/product/count", Integer.class);
+					restTemplate.getForObject(appUrl.substring(0,appUrl.length()-1-3)+"/product/count", Integer.class);
 					System.out.println("Heroku database driver name: "+driverName);
 				}
 			}
 		},0,1000*60);
-
 		return timer;
 	}
 
