@@ -1,5 +1,9 @@
 package com.pizzashop.services;
 
+/**
+ * Created by bartek on 2/26/17.
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -8,59 +12,25 @@ import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
 
 import javax.annotation.PostConstruct;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-/**
- * Created by bartek on 2/26/17.
- */
 @Component
 @Scope(value = "singleton", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class AccountActivationEmailService {
+public class AccountActivationEmailHeroku {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Value(value = "classpath:accountActivationMail.html")
-    private Resource eMailHtmlResource;
+    private String eMailContent="<div>\n" +
+            "    <h1>Aktywacja konta: </h1>\n" +
+            "    <a id=\"activationLink\" href=\"\">Aktywuj konto</a>\n" +
+            "</div>";
 
-    private File file;
-
-    private FileInputStream fis;
-
-    private String eMailContent;
-
-    @PostConstruct
-    public void initialize() {
-        try {
-            this.file = eMailHtmlResource.getFile();
-            this.fis = new FileInputStream(file);
-        } catch (IOException exc) {
-
-        }
-        readMailContentFromHTML();
-
-    }
-
-    private void readMailContentFromHTML() {
-        byte[] data = null;
-        try {
-            data = new byte[(int) file.length()];
-
-            fis.read(data);
-            fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            eMailContent = new String(data, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
 
     private String getUrl(ActivationLink activationLink,String requestUri){
         StringBuilder stringBuilder = new StringBuilder(requestUri+"/");

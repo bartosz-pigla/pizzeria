@@ -2,6 +2,7 @@ package com.pizzashop.controllers;
 
 import com.pizzashop.models.Manager;
 import com.pizzashop.repositories.ManagerRepository;
+import com.pizzashop.services.AccountActivationEmailHeroku;
 import com.pizzashop.services.AccountActivationEmailService;
 import com.pizzashop.services.ActivationLink;
 import com.pizzashop.services.ActivationService;
@@ -36,8 +37,11 @@ public class RegistrationController {
     @Autowired
     ManagerRepository managerRepository;
 
+//    @Autowired
+//    AccountActivationEmailService accountActivationEmailService;
+
     @Autowired
-    AccountActivationEmailService accountActivationEmailService;
+    AccountActivationEmailHeroku accountActivationEmailService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Manager user(@RequestBody @Validated({Manager.RegistrationValidation.class}) Manager manager, HttpServletRequest request) throws MessagingException {
