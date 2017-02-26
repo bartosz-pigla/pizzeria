@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by bartek on 2/25/17.
  */
-public interface ManagerRepository  extends JpaRepository<OrderPosition,Integer> {
+public interface ManagerRepository  extends JpaRepository<Manager,Integer> {
     @Query("SELECT manager FROM Manager manager WHERE manager.eMail=:eMail")
     Manager findByeMail(@Param("eMail")String eMail);
 }

@@ -1,6 +1,7 @@
 package com.pizzashop;
 
 import com.pizzashop.controllers.PizzaController;
+import com.pizzashop.models.Manager;
 import com.pizzashop.productFilters.DrinkFilter;
 import com.pizzashop.productFilters.PizzaFilter;
 import com.pizzashop.productFilters.SauceFilter;
@@ -26,7 +27,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -35,6 +39,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,6 +59,12 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 	public Principal user(Principal user) {
 		return user;
 	}
+
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public Manager user(@RequestBody @Validated({Manager.LoginValidation.class, Manager.RegistrationValidation.class}) Manager manager){
+//		System.out.println(manager);
+//		return manager;
+//	}
 
 	@Bean
 	@Primary
@@ -126,13 +137,13 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				System.out.println("log for the sake of Heroku");
+				//System.out.println("log for the sake of Heroku");
 				if(driverName.equals("org.postgresql.Driver")){
 					restTemplate.getForObject("http://pizzeria-pwr.herokuapp.com/product/count", Integer.class);
 					System.out.println("Heroku database driver name: "+driverName);
 				}
 			}
-		},0,1000*3);
+		},0,1000*60);
 
 		return timer;
 	}
@@ -171,6 +182,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 					.authorizeRequests()
 					.antMatchers("/**").permitAll()
 					.antMatchers(HttpMethod.GET,"/foo").permitAll()
+					.antMatchers(HttpMethod.POST,"/register").permitAll()
 					.antMatchers(HttpMethod.GET,"/**").authenticated()
 					.and()
 					.csrf()

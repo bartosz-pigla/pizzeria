@@ -1,0 +1,128 @@
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-offset-5 col-md-3">-->
+<!--<div class="form-login">-->
+<!--<h4>Welcome back.</h4>-->
+<!--<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />-->
+<!--</br>-->
+<!--<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />-->
+<!--</br>-->
+<!--<div class="wrapper">-->
+<!--<span class="group-btn">-->
+<!--<a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<div class="row">
+    <!--left-->
+    <div class="col-md-2" id="leftCol">
+        <div class="nav nav-stacked" id="sidebar">
+
+        </div>
+    </div>
+    <!--/left-->
+
+    <!--right-->
+    <div class="col-md-7">
+        <div class="alert alert-danger fade in" ng-show="controller.backEndValidationError.eMail">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd</strong>
+            <span>Adres e-mail już istnieje w systemie</span>
+        </div>
+
+
+        <div class="alert alert-success fade in" ng-show="controller.registered">
+            <a href="" class="close" data-dismiss="alert">&times;</a>
+            <strong>Pomyślnie dodano nowego kierownika. W celu dokończenia rejestracji proszę aktywować konto za
+                pomocą linka aktywującego otrzymanego w wiadomości e-mail na adres podany przez użytkownika</strong>
+            <span><a href="#/">Powrót do strony głównej</a></span>
+        </div>
+
+
+        <form id="registration" name="registration" class="item" ng-show="!controller.registered" novalidate>
+
+                <div class="form-group">
+                    <label for="eMailInput">Adres e-mail</label> <input
+                        type="email" name="eMail" class="form-control" id="eMailInput" placeholder="Adres e-mail"
+                        ng-model="controller.manager.eMail" required/>
+
+                    <div ng-show="registration.eMail.$touched">
+                        <div class="alert alert-danger fade in" ng-show="registration.eMail.$error.required">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Proszę wpisać adres e-mail.</span>
+                        </div>
+
+                        <div class="alert alert-danger fade in" ng-show="!registration.eMail.$valid">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Adres e-mail nieprawidłowy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Hasło</label> <input
+                        type="password" name="password" class="form-control" id="passwordInput" placeholder="Hasło"
+                        ng-model="controller.manager.password" required/>
+
+                    <div ng-show="registration.password.$touched">
+                        <div class="alert alert-danger fade in" ng-show="registration.password.$error.required">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Proszę wpisać hasło</span>
+                        </div>
+
+                        <div class="alert alert-danger fade in" ng-show="!registration.password.$valid">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Hasło nieprawidłowe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordConfirmationInput">Proszę potwierdzić hasło</label> <input
+                        type="password" name="passwordConfirmation" class="form-control" id="passwordConfirmationInput"
+                        placeholder="Hasło" ng-model="controller.manager.passwordConfirmation" required/>
+
+                    <div ng-show="registration.passwordConfirmation.$touched">
+                        <div class="alert alert-danger fade in"
+                             ng-show="registration.passwordConfirmation.$error.required">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Proszę wpisać hasło</span>
+                        </div>
+
+                        <div class="alert alert-danger fade in" ng-show="!registration.passwordConfirmation.$valid">
+                            <a href="" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd</strong>
+                            <span>Hasło nieprawidłowe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="alert alert-danger fade in"
+                         ng-show="controller.manager.password != controller.manager.passwordConfirmation">
+                        <a href="" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Błąd</strong>
+                        <span>Podane hasła różnią się</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                        ng-disabled="!registration.$valid && controller.manager.password == controller.manager.passwordConfirmation"
+                        ng-click="controller.register()">Zarejestruj
+                </button>
+        </form>
+
+    </div>
+    <!--/right-->
+</div>

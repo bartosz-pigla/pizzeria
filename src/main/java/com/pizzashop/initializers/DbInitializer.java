@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -162,6 +163,9 @@ public class DbInitializer {
                 .seteMail("bartoszpigla@o2.pl")
                 .setPassword("1234")
                 .setRoles(Arrays.asList("ROLE_ADMIN","ADMIN","USER"))
+                .setActivated(true)
+                .setActivationDate(new Date())
+                .setRegistrationDate(new Date())
                 .createManager();
     }
 

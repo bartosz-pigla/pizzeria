@@ -54,6 +54,7 @@
                 <!--<p>{{user}}</p>-->
                 <!--<p>{{navigationController.user}}</p>-->
                 <li ng-show="!authenticated"><a href="#login"><span>Zaloguj</span></a></li>
+                <li ng-show="!authenticated"><a href="#register"><span>Zarejestruj</span></a></li>
                 <li ng-show="authenticated" class="dropdown"><a class="dropdown-toggle"
                                         data-toggle="dropdown"><span>Zalogowano jako: {{user.name}}</span>
                     <span class="caret"></span></a>
@@ -100,6 +101,7 @@
 
 <script src="js/controllers/start.js"></script>
 <script src="js/controllers/navigation.js"></script>
+<script src="js/controllers/registration.js"></script>
 
 <!--<script src="js/controllers/login.js"></script>-->
 

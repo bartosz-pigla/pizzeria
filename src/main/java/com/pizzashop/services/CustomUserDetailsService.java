@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String eMail) throws UsernameNotFoundException {
         Manager manager=managerRepository.findByeMail(eMail);
-        if(manager==null)
+        if(manager==null || !manager.getActivated())
             throw new UsernameNotFoundException("No customer present with e-mail: "+eMail);
         else
             return new CustomUserDetails(manager);

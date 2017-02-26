@@ -38,6 +38,12 @@ var pizzaShopManagementApp = angular.module('pizzaShopManagementApp', ['ngRoute'
                     controllerAs: 'controller',
                     requiresLogin: false
                 })
+                .when('/register', {
+                    templateUrl: 'registration.html',
+                    controller: 'registrationController',
+                    controllerAs: 'controller',
+                    requiresLogin: false
+                })
                 .otherwise('/');
 
             $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
