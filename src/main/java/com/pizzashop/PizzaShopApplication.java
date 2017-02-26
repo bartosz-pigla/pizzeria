@@ -157,7 +157,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 					System.out.println("Heroku database driver name: "+driverName);
 				}
 			}
-		},0,1000*60);
+		},0,1000*3);
 		return timer;
 	}
 
