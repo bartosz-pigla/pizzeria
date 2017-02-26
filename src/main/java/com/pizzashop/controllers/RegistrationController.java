@@ -7,6 +7,7 @@ import com.pizzashop.services.AccountActivationEmailService;
 import com.pizzashop.services.ActivationLink;
 import com.pizzashop.services.ActivationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -44,12 +45,13 @@ public class RegistrationController {
     AccountActivationEmailHeroku accountActivationEmailService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Manager user(@RequestBody @Validated({Manager.RegistrationValidation.class}) Manager manager, HttpServletRequest request) throws MessagingException {
+    public Manager user(@RequestBody @Validated({Manager.RegistrationValidation.class}) Manager manager,
+                        @Qualifier(value = "APP_URL") String appUrl) throws MessagingException {
 
         Manager notActivatedManager=managerRepository.save(manager);
         ActivationLink activationLink = activationService.createLink(notActivatedManager.getManagerId());
 
-        accountActivationEmailService.send(manager.geteMail(), activationLink, "http://pizzeria-pwr.herokuapp.com/#/activate");
+        accountActivationEmailService.send(manager.geteMail(), activationLink, appUrl+"activate");
 
         return manager;
     }

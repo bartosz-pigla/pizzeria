@@ -134,6 +134,11 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		return System.getenv("DRIVER_NAME");
 	}
 
+	@Bean(name="APP_URL")
+	public String appUrl(){
+		return System.getenv("APP_URL");
+	}
+
 	@Bean
 	public Timer herokuServerSleepingPrevention(
 			@Qualifier(value = "DRIVER_NAME") String driverName,
