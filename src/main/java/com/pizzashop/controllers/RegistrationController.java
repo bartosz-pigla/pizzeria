@@ -38,6 +38,10 @@ public class RegistrationController {
     @Autowired
     ManagerRepository managerRepository;
 
+    @Autowired
+    @Qualifier(value = "APP_URL")
+    String appUrl;
+
 //    @Autowired
 //    AccountActivationEmailService accountActivationEmailService;
 
@@ -45,9 +49,7 @@ public class RegistrationController {
     AccountActivationEmailHeroku accountActivationEmailService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Manager user(@RequestBody @Validated({Manager.RegistrationValidation.class}) Manager manager,
-                        @Qualifier(value = "APP_URL") String appUrl) throws MessagingException {
-
+    public Manager user(@RequestBody @Validated({Manager.RegistrationValidation.class}) Manager manager) throws MessagingException {
         Manager notActivatedManager=managerRepository.save(manager);
         ActivationLink activationLink = activationService.createLink(notActivatedManager.getManagerId());
 
