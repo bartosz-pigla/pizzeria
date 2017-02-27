@@ -60,11 +60,11 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 		return user;
 	}
 
-//	@RequestMapping("/foo")
-//	public void foo() {
-//		System.out.println("FOO");
-//
-//	}
+	@RequestMapping("/foo")
+	public String foo() {
+		System.out.println("FOO");
+		return "FOO";
+	}
 
 //	@RequestMapping(value = "/register", method = RequestMethod.POST)
 //	public Manager user(@RequestBody @Validated({Manager.LoginValidation.class, Manager.RegistrationValidation.class}) Manager manager){
@@ -145,15 +145,16 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 			@Qualifier(value = "APP_URL") String appUrl,
 			@Qualifier(value = "requestForHeroku") RestTemplate restTemplate
 			){
+		String restUrl=appUrl.substring(0,appUrl.length()-2);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				//System.out.println("log for the sake of Heroku");
-				//appUrl.substring(0,appUrl.length()-1-3)+"/product/count"
+				System.out.println("LOG FOR THE SAKE OF HEROKU");
 
 				if(driverName.equals("org.postgresql.Driver")){
-					restTemplate.getForObject("http://pizzeria-1994.herokuapp.com/product/count", Integer.class);
+					//restTemplate.getForObject("http://pizzeria-1994.herokuapp.com/product/count", Integer.class);
+					restTemplate.getForObject(restUrl + "foo", String.class);
 					System.out.println("Heroku database driver name: "+driverName);
 				}
 			}
