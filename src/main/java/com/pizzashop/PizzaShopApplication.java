@@ -193,7 +193,7 @@ public class PizzaShopApplication extends WebMvcConfigurerAdapter{
 			http
 					.httpBasic().and()
 					.authorizeRequests()
-					.antMatchers("/**").permitAll()
+					.antMatchers("/","/addProduct.html","/deleteProduct.html","/editProduct.html","/readComplaint.html","/selectOption.html", "/index.html", "/login.html", "/registration.html", "/activation.html").permitAll()
 					.antMatchers(HttpMethod.GET,"/foo").permitAll()
 					.antMatchers(HttpMethod.POST,"/register").permitAll()
 					.antMatchers(HttpMethod.POST,"/activate").permitAll()
